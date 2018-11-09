@@ -24,4 +24,5 @@ public class GameManger : MonoBehaviour {
     {
         SceneManager.LoadScene(sceneToChangeTo);
     }
+    
 }
