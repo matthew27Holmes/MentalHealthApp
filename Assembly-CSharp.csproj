@@ -61,6 +61,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\ClearObj.cs" />
+    <Compile Include="Assets\ObsticelBehaviour.cs" />
+    <Compile Include="Assets\PlayAreaManger.cs" />
     <Compile Include="Assets\Scripts\Analytics.cs" />
     <Compile Include="Assets\Scripts\AudioProcessor.cs" />
     <Compile Include="Assets\Scripts\Example.cs" />
