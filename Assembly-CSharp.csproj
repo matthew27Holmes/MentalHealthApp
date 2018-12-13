@@ -64,10 +64,13 @@
     <Compile Include="Assets\ClearObj.cs" />
     <Compile Include="Assets\ObsticelBehaviour.cs" />
     <Compile Include="Assets\PlayAreaManger.cs" />
+    <Compile Include="Assets\playerControler.cs" />
     <Compile Include="Assets\Scripts\Analytics.cs" />
     <Compile Include="Assets\Scripts\AudioProcessor.cs" />
     <Compile Include="Assets\Scripts\Example.cs" />
     <Compile Include="Assets\Scripts\GameManger.cs" />
+    <Compile Include="Assets\Spwaning.cs" />
+    <Compile Include="Assets\spwanPoint.cs" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>D:/MentalHealthApp/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>
