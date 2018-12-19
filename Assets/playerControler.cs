@@ -12,21 +12,10 @@ public class playerControler : MonoBehaviour {
     public float speed;
     public float MaxH, MinH;
 
+
     // Update is called once per frame
     void Update () {
 
-       
-            if (transform.position.y < MaxH && Input.GetKeyDown(KeyCode.UpArrow))
-            {
-                targetPos = new Vector2(transform.position.x, transform.position.y + YMod);
-                transform.position = targetPos;
-            }
-            else if (Input.GetKeyDown(KeyCode.DownArrow) && transform.position.y > MinH)
-            {
-                targetPos = new Vector2(transform.position.x, transform.position.y - YMod);
-                transform.position = targetPos;
-            }
-        
         //transform.position = Vector2.MoveTowards(transform.position, targetPos, speed * Time.deltaTime);
     }
 
@@ -37,6 +26,24 @@ public class playerControler : MonoBehaviour {
         if(health <= 0)
         {
             die();
+        }
+    }
+
+    public void moveUp()
+    {
+        if (transform.position.y < MaxH)
+        {
+            targetPos = new Vector2(transform.position.x, transform.position.y + YMod);
+            transform.position = targetPos;
+        }
+    }
+
+    public void moveDown()
+    {
+        if (transform.position.y > MinH)
+        {
+            targetPos = new Vector2(transform.position.x, transform.position.y - YMod);
+            transform.position = targetPos;
         }
     }
 
