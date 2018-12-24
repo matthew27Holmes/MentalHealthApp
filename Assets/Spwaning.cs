@@ -22,7 +22,7 @@ public class Spwaning : MonoBehaviour {
         if(timeBtwSpawn <= 0)
         {
             int rand = Random.Range(0, obstacle.Length);
-            Instantiate(obstacle[rand], transform.position, Quaternion.identity);
+            Instantiate(obstacle[rand], transform.position, transform.rotation);
             timeBtwSpawn = startTimeBetweenSpwan;
             if(startTimeBetweenSpwan > minTime)
             {

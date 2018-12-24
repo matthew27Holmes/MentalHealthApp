@@ -5,10 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class playerControler : MonoBehaviour {
 
-    private Vector2 targetPos;
+    private Vector3 targetPos;
     private int health = 3;
 
-    public float YMod;
+    public float ZMod;
     public float speed;
     public float MaxH, MinH;
 
@@ -31,18 +31,18 @@ public class playerControler : MonoBehaviour {
 
     public void moveUp()
     {
-        if (transform.position.y < MaxH)
+        if (transform.position.z < MaxH)
         {
-            targetPos = new Vector2(transform.position.x, transform.position.y + YMod);
+            targetPos = new Vector3(transform.position.x, transform.position.y, transform.position.z + ZMod);
             transform.position = targetPos;
         }
     }
 
     public void moveDown()
     {
-        if (transform.position.y > MinH)
+        if (transform.position.z > MinH)
         {
-            targetPos = new Vector2(transform.position.x, transform.position.y - YMod);
+            targetPos = new Vector3(transform.position.x, transform.position.y, transform.position.z - ZMod);
             transform.position = targetPos;
         }
     }
