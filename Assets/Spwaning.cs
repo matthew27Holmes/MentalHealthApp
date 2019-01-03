@@ -11,27 +11,28 @@ public class Spwaning : MonoBehaviour {
     public float decreaseTime;
     public float minTime = 0.65f;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
 	// Update is called once per frame
 	void Update () {
 		
-        if(timeBtwSpawn <= 0)
+       
+
+	}
+
+    public void Spawn()
+    {
+        if (timeBtwSpawn <= 0)
         {
             int rand = Random.Range(0, obstacle.Length);
             Instantiate(obstacle[rand], transform.position, transform.rotation);
             timeBtwSpawn = startTimeBetweenSpwan;
-            if(startTimeBetweenSpwan > minTime)
+            if (startTimeBetweenSpwan > minTime)
             {
                 startTimeBetweenSpwan -= decreaseTime;
             }
-        }else
+        }
+        else
         {
             timeBtwSpawn -= Time.deltaTime;
         }
-
-	}
+    }
 }
