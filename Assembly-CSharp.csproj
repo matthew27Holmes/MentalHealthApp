@@ -69,7 +69,7 @@
     <Compile Include="Assets\Scripts\AudioProcessor.cs" />
     <Compile Include="Assets\Scripts\Example.cs" />
     <Compile Include="Assets\Scripts\GameManger.cs" />
-    <Compile Include="Assets\SkythianCat\Glowing_Forest\Scripts\WaterGroup.cs" />
+    <Compile Include="Assets\Scripts\WaterGroup.cs" />
     <Compile Include="Assets\Spwaning.cs" />
     <Compile Include="Assets\spwanPoint.cs" />
     <Compile Include="Assets\startingPlatform.cs" />

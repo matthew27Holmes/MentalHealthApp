@@ -23,11 +23,11 @@ public class ObsticelBehaviour : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Player"))
+       /* if(other.CompareTag("Player"))
         {
             Instantiate(effect, transform.position, Quaternion.identity);
             other.GetComponent<playerControler>().TakeDamge(damage);
             Destroy(gameObject);
-        }
+        }*/
     }
 }
