@@ -8,6 +8,7 @@ using UnityEngine.SceneManagement;
 public class GameManger : MonoBehaviour {
 
     private static bool GameManagerExists;
+    private static string currentScene;
     private bool paused = false;
     private void Start()
     {
@@ -21,8 +22,28 @@ public class GameManger : MonoBehaviour {
             Destroy(gameObject);
         }
     }
+
+    public void Update()
+    {
+        if(currentScene == "RunnerGameScene")
+        {
+            GameObject Player = GameObject.FindGameObjectWithTag("Player");
+            GameObject Audio = GameObject.FindGameObjectWithTag("AudioSource");
+
+            if (Player.GetComponent<playerControler>().OnPlatform)
+            {
+                Audio.GetComponent<AudioSource>().Pause();
+            }
+            else
+            {
+                Audio.GetComponent<AudioSource>().Play();
+            }
+        }
+    }
+
     public void changeScene(string sceneToChangeTo)
     {
+        currentScene = sceneToChangeTo;
         SceneManager.LoadScene(sceneToChangeTo);
     }
 
