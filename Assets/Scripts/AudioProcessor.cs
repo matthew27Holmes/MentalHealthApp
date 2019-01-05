@@ -73,6 +73,8 @@ public class AudioProcessor : MonoBehaviour
 	public OnBeatEventHandler onBeat;
 	public OnSpectrumEventHandler onSpectrum;
 
+    public float tempo;
+
 	//////////////////////////////////
 	private long getCurrentTimeMillis ()
 	{
@@ -112,7 +114,7 @@ public class AudioProcessor : MonoBehaviour
 		lastT = getCurrentTimeMillis ();
 	}
 
-	public void tapTempo ()
+	public float tapTempo ()
 	{
 		nowT = getCurrentTimeMillis ();
 		diff = nowT - lastT;
@@ -123,6 +125,7 @@ public class AudioProcessor : MonoBehaviour
 		int average = (int)(sum / entries);
 
 		Debug.Log ("average = " + average);
+        return average;
 	}
 
 	double[] toDoubleArray (float[] arr)
@@ -169,6 +172,7 @@ public class AudioProcessor : MonoBehaviour
 					aMax = acVal;
 					tempopd = i;
 				}
+                tempo = tempopd;
 				// store in array backwards, so it displays right-to-left, in line with traces
 				acVals [maxlag - 1 - i] = acVal;
 			}

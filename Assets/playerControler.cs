@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class playerControler : MonoBehaviour {
@@ -29,7 +27,7 @@ public class playerControler : MonoBehaviour {
 
         if(Input.GetKey(KeyCode.Space))
         {
-            JumpOffPlatform();
+            Jump();
         }
 
         if (Input.GetKey(KeyCode.LeftArrow))
@@ -78,7 +76,7 @@ public class playerControler : MonoBehaviour {
                         if (lp.y > fp.y)  //If the movement was up
                         {   //Up swipe
                             Debug.Log("Up Swipe");
-                            JumpOffPlatform();
+                            Jump();
                         }
                         //else
                         //{   //Down swipe
@@ -126,17 +124,14 @@ public class playerControler : MonoBehaviour {
         }
     }
 
-    public void JumpOffPlatform()
+    public void Jump()
     {
-        float upForce = 20, forwardForce = 20;
+        float upForce = 20, forwardForce = 5;
 
         Rigidbody Rb = GetComponent<Rigidbody>();
 
         Rb.AddForce(Vector3.up * upForce);
         Rb.AddForce(Vector3.right * forwardForce);
-
-
-
     }
 
     public void die()
