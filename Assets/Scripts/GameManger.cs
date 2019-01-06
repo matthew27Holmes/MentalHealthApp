@@ -9,7 +9,7 @@ public class GameManger : MonoBehaviour {
 
     private static bool GameManagerExists;
     private static string currentScene;
-    private bool paused = false;
+    public bool paused = false;
     private void Start()
     {
         if (!GameManagerExists)
@@ -25,20 +25,20 @@ public class GameManger : MonoBehaviour {
 
     public void Update()
     {
-        if(currentScene == "RunnerGameScene")
-        {
-            GameObject Player = GameObject.FindGameObjectWithTag("Player");
-            GameObject Audio = GameObject.FindGameObjectWithTag("AudioSource");
+        //if(currentScene == "RunnerGameScene")
+        //{
+        //    GameObject Player = GameObject.FindGameObjectWithTag("Player");
+        //    GameObject Audio = GameObject.FindGameObjectWithTag("AudioSource");
 
-            if (Player.GetComponent<playerControler>().OnPlatform)
-            {
-                Audio.GetComponent<AudioSource>().Pause();
-            }
-            else
-            {
-                Audio.GetComponent<AudioSource>().Play();
-            }
-        }
+        //    if (Player.GetComponent<playerControler>().OnPlatform)
+        //    {
+        //        Audio.GetComponent<AudioSource>().Pause();
+        //    }
+        //    else
+        //    {
+        //        Audio.GetComponent<AudioSource>().Play();
+        //    }
+        //}
     }
 
     public void changeScene(string sceneToChangeTo)
@@ -75,6 +75,13 @@ public class GameManger : MonoBehaviour {
         }
     }
    
+    public void StopGame()
+    {
+        Time.timeScale = 0;
+        GameObject Audio = GameObject.FindGameObjectWithTag("AudioSource");
+        Audio.GetComponent<AudioSource>().Pause();
+    }
+         
 
     public void Quit()
     {

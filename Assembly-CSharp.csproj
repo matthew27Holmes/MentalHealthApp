@@ -61,20 +61,22 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\ClearObj.cs" />
-    <Compile Include="Assets\GroundManger.cs" />
-    <Compile Include="Assets\ObsticelBehaviour.cs" />
-    <Compile Include="Assets\PlayAreaManger.cs" />
-    <Compile Include="Assets\playerControler.cs" />
     <Compile Include="Assets\Scripts\Analytics.cs" />
     <Compile Include="Assets\Scripts\AudioProcessor.cs" />
+    <Compile Include="Assets\Scripts\ClearObj.cs" />
     <Compile Include="Assets\Scripts\Example.cs" />
     <Compile Include="Assets\Scripts\GameManger.cs" />
+    <Compile Include="Assets\Scripts\GroundManger.cs" />
+    <Compile Include="Assets\Scripts\ObsticelBehaviour.cs" />
+    <Compile Include="Assets\Scripts\PauseManger.cs" />
+    <Compile Include="Assets\Scripts\PlayAreaManger.cs" />
+    <Compile Include="Assets\Scripts\playerControler.cs" />
+    <Compile Include="Assets\Scripts\Spwaning.cs" />
+    <Compile Include="Assets\Scripts\spwanPoint.cs" />
+    <Compile Include="Assets\Scripts\startingPlatform.cs" />
+    <Compile Include="Assets\Scripts\SwipeInput.cs" />
     <Compile Include="Assets\Scripts\WaterGroup.cs" />
-    <Compile Include="Assets\Spwaning.cs" />
-    <Compile Include="Assets\spwanPoint.cs" />
-    <Compile Include="Assets\startingPlatform.cs" />
-    <Compile Include="Assets\SwipeInput.cs" />
+    <Compile Include="Assets\Scripts\WinStateHandler.cs" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>C:/Users/Matt/Documents/UWE GAMES TEC WORK/year three/CTP/MentalHealthApp/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>

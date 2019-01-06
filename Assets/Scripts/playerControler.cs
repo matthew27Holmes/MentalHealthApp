@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 public class playerControler : MonoBehaviour {
 
     private Vector3 targetPos;
-    private int health = 3;
+    public GameObject swipeInput;
 
     public float ZMod;
     public float speed;
@@ -45,10 +45,12 @@ public class playerControler : MonoBehaviour {
             {
                 fp = touch.position;
                 lp = touch.position;
+                swipeInput.transform.position = touch.position;
             }
             else if (touch.phase == TouchPhase.Moved) // update the last position based on where they moved
             {
                 lp = touch.position;
+                swipeInput.transform.position = touch.position;
             }
             else if (touch.phase == TouchPhase.Ended) //check if the finger is removed from the screen
             {
@@ -92,16 +94,6 @@ public class playerControler : MonoBehaviour {
         }
     }
 
-    public void TakeDamge(int damge)
-    {
-        health -= damge;
-        Debug.Log(health);
-        if(health <= 0)
-        {
-            die();
-        }
-    }
-
     public void moveLeft()
     {
         if (transform.position.z < MaxH)
@@ -109,7 +101,6 @@ public class playerControler : MonoBehaviour {
             targetPos = new Vector3(transform.position.x, transform.position.y, transform.position.z + ZMod);
 
             transform.position = Vector3.MoveTowards(transform.position, targetPos, speed * Time.deltaTime);
-           // transform.position = targetPos;
         }
     }
 
@@ -120,7 +111,6 @@ public class playerControler : MonoBehaviour {
             targetPos = new Vector3(transform.position.x, transform.position.y, transform.position.z - ZMod);
 
             transform.position = Vector3.MoveTowards(transform.position, targetPos, speed * Time.deltaTime);
-            // transform.position = targetPos;
         }
     }
 
@@ -137,7 +127,6 @@ public class playerControler : MonoBehaviour {
     public void die()
     {
         Debug.Log("blah i died");
-        //Destroy(gameObject);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
