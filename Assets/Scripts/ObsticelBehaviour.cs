@@ -15,14 +15,33 @@ public class ObsticelBehaviour : MonoBehaviour {
         AP = GameObject.FindObjectOfType<AudioProcessor>();
         
 	}
+
 	
 	// Update is called once per frame
 	void Update () {
-       // speed = AP.tapTempo();
+        // speed = AP.tapTempo();
         // Move the object forward along its z axis 1 unit/second.
         //transform.Translate(Vector3.back * (speed * Time.deltaTime));
+        findLane();
         transform.Translate(Vector2.left * (speed * Time.deltaTime));
     }
+
+    void findLane()
+    {
+        if (transform.position.z > 0 )
+        {
+            tag = "Lane1";
+        }
+        else if (transform.position.z < 0)
+        {
+            tag = "Lane3";
+        }
+        else
+        {
+            tag = "Lane2";
+        }
+    }
+
 
     private void OnTriggerEnter(Collider other)
     {

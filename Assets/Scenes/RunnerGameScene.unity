@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.30036062, g: 0.25133297, b: 0.20512995, a: 1}
+  m_IndirectSpecularColor: {r: 0.29899752, g: 0.2507531, b: 0.20416611, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -860,6 +860,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114631563587462180, guid: 4b41f8c1bd6117a49b3ac69004d6c407,
+        type: 2}
+      propertyPath: LaneTags.Array.size
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4249220985555388, guid: 4b41f8c1bd6117a49b3ac69004d6c407, type: 2}
       propertyPath: m_LocalPosition.x
       value: 11.17
@@ -897,6 +902,31 @@ Prefab:
       propertyPath: swipeInput
       value: 
       objectReference: {fileID: 1256797133}
+    - target: {fileID: 114631563587462180, guid: 4b41f8c1bd6117a49b3ac69004d6c407,
+        type: 2}
+      propertyPath: LaneTags.Array.data[0]
+      value: Lane1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114631563587462180, guid: 4b41f8c1bd6117a49b3ac69004d6c407,
+        type: 2}
+      propertyPath: LaneTags.Array.data[1]
+      value: Lane2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114631563587462180, guid: 4b41f8c1bd6117a49b3ac69004d6c407,
+        type: 2}
+      propertyPath: LaneTags.Array.data[2]
+      value: Lane3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114631563587462180, guid: 4b41f8c1bd6117a49b3ac69004d6c407,
+        type: 2}
+      propertyPath: LaneTags.Array.data[3]
+      value: Lane3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114631563587462180, guid: 4b41f8c1bd6117a49b3ac69004d6c407,
+        type: 2}
+      propertyPath: initialAngle
+      value: 45
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114493269408860254, guid: 4b41f8c1bd6117a49b3ac69004d6c407, type: 2}
   m_SourcePrefab: {fileID: 100100000, guid: 4b41f8c1bd6117a49b3ac69004d6c407, type: 2}

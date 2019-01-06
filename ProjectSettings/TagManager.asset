@@ -7,6 +7,9 @@ TagManager:
   - AudioSource
   - StartingPlatform
   - SongText
+  - Lane1
+  - Lane2
+  - Lane3
   layers:
   - Default
   - TransparentFX
