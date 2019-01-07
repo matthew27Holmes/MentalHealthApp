@@ -16,7 +16,8 @@ public class playerControler : MonoBehaviour {
     float dragDistance;  //minimum distance for a swipe to be registered
 
     public bool OnPlatform;
-    int playersLane;
+    public Vector3 jumpToPostion;
+    public int playersLane;
     public string[] LaneTags;
     
 
@@ -171,8 +172,9 @@ public class playerControler : MonoBehaviour {
         if (OnPlatform)
         {
             ObsticelBehaviour PlatformBehaviour = NearestPlat.gameObject.GetComponent<ObsticelBehaviour>();
-            NearestPlatPostion.x -= 120 * (PlatformBehaviour.speed * Time.deltaTime); // fudge * (obsticle speed * Time.deltaTime);
+            NearestPlatPostion.x -= 30.0f * PlatformBehaviour.speed ; // fudge * (obsticle speed * Time.deltaTime);
         }
+        jumpToPostion = NearestPlatPostion;
         return NearestPlatPostion;
     }
 
