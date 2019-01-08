@@ -304,6 +304,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\MainMenueContorls.cs" />
+    <Compile Include="Assets\projectileFireTest.cs" />
     <Compile Include="Assets\Scripts\Analytics.cs" />
     <Compile Include="Assets\Scripts\AudioProcessor.cs" />
     <Compile Include="Assets\Scripts\ClearObj.cs" />
