@@ -19,6 +19,7 @@ public class playerControler : MonoBehaviour {
     public Vector3 jumpToPostion;
     public int playersLane;
     public string[] LaneTags;
+    public bool inAir;
     
 
     void Start()
@@ -39,8 +40,9 @@ public class playerControler : MonoBehaviour {
         }
         findPlayersLane();
 
-        if (Input.GetKey(KeyCode.Space))
+        if (Input.GetKey(KeyCode.Space) && !inAir)
         {
+            inAir = true;
             Jump();
         }
         SwipeControls();
@@ -48,11 +50,11 @@ public class playerControler : MonoBehaviour {
 
     void findPlayersLane()
     {
-        if(transform.position.z > 0)
+        if(transform.position.z > 1)
         {
             playersLane = 0;
         }
-        else if(transform.position.z < 0 )
+        else if(transform.position.z < -1 )
         {
             playersLane = 2;
         }
@@ -159,7 +161,7 @@ public class playerControler : MonoBehaviour {
 
         // check plat form is in range 
 
-        float MaxRange = 50.0f;
+        float MaxRange = 20.0f;
         if (NearestPlat == null || transform.position.x - NearestPlat.position.x > MaxRange)
         {
             Debug.Log("out of range");
@@ -172,7 +174,7 @@ public class playerControler : MonoBehaviour {
         if (OnPlatform)
         {
             ObsticelBehaviour PlatformBehaviour = NearestPlat.gameObject.GetComponent<ObsticelBehaviour>();
-            NearestPlatPostion.x -= 30.0f * PlatformBehaviour.speed ; // fudge * (obsticle speed * Time.deltaTime);
+            NearestPlatPostion.x -= 2.0f * PlatformBehaviour.speed ; // fudge * (obsticle speed * Time.deltaTime);
         }
         jumpToPostion = NearestPlatPostion;
         return NearestPlatPostion;
@@ -224,11 +226,19 @@ public class playerControler : MonoBehaviour {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
+    public void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.layer == LayerMask.NameToLayer("Platforms"))
+        {
+            inAir = false;
+        }
+    }
+
     public void OnTriggerExit(Collider other)
     {
         if(other.tag == "StartingPlatform")
         {
             OnPlatform = false;
-        }
+        }  
     }
 }
