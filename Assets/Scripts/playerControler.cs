@@ -5,6 +5,7 @@ public class playerControler : MonoBehaviour {
 
     Vector3 targetPos;
     public GameObject swipeInput;
+    public Camera mainCamera;
 
     public float ZMod;
     public float speed;
@@ -15,6 +16,11 @@ public class playerControler : MonoBehaviour {
     Vector3 lp;   //Last touch position
     float dragDistance;  //minimum distance for a swipe to be registered
 
+    //mouse debug control 
+    Vector2 firstPressPos;
+    Vector2 secondPressPos;
+    Vector2 currentSwipe;
+
     public bool OnPlatform;
     public Vector3 jumpToPostion;
     public int playersLane;
@@ -24,44 +30,29 @@ public class playerControler : MonoBehaviour {
 
     void Start()
     {
-        dragDistance = Screen.height * 15 / 100; //dragDistance is 15% height of the screen
+        dragDistance = Screen.height * 5 / 100; //dragDistance is 15% height of the screen
         OnPlatform = true;
+        playersLane = 1;
     }
 
     // Update is called once per frame
     void Update () {
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
-        {
-            moveLeft();
-        }
-         if (Input.GetKeyDown(KeyCode.RightArrow))
-        {
-            moveRight();
-        }
-        findPlayersLane();
 
-        if (Input.GetKey(KeyCode.Space) && !inAir)
+        createTouchTrail();
+
+        if (!inAir)
         {
-            inAir = true;
-            Jump();
+            MouseSwipe();
+            SwipeControls();
         }
-        SwipeControls();
     }
 
-    void findPlayersLane()
+    void createTouchTrail()
     {
-        if(transform.position.z > 1)
-        {
-            playersLane = 0;
-        }
-        else if(transform.position.z < -1 )
-        {
-            playersLane = 2;
-        }
-        else
-        {
-            playersLane = 1;
-        }
+        float Distance = 10;
+        Ray r = Camera.main.ScreenPointToRay(Input.mousePosition);
+        Vector3 pos = r.GetPoint(Distance);
+        swipeInput.transform.position = pos;
     }
 
     public void SwipeControls()
@@ -74,23 +65,18 @@ public class playerControler : MonoBehaviour {
             {
                 fp = touch.position;
                 lp = touch.position;
-                swipeInput.transform.position = touch.position;
             }
             else if (touch.phase == TouchPhase.Moved)
             {
                 lp = touch.position;
-                swipeInput.transform.position = touch.position;
             }
             else if (touch.phase == TouchPhase.Ended) //check if the finger is removed from the screen
             {
-                lp = touch.position;  //last touch position. Ommitted if you use list
+                lp = touch.position; 
 
                 //Check if drag distance is greater than 20% if less then = tap
                 if (Mathf.Abs(lp.x - fp.x) > dragDistance || Mathf.Abs(lp.y - fp.y) > dragDistance)
                 {
-                    //check if the drag is vertical or horizontal
-                    //if (Mathf.Abs(lp.x - fp.x) > Mathf.Abs(lp.y - fp.y))
-                    //{   //If the horizontal movement is greater than the vertical movement...
                     if ((lp.x > fp.x))
                     {
                         Debug.Log("Right Swipe");
@@ -101,45 +87,65 @@ public class playerControler : MonoBehaviour {
                         Debug.Log("Left Swipe");
                         moveLeft();
                     }
-                    //the vertical movement is greater than the horizontal movement
                     if (lp.y > fp.y)
                     {
                         Debug.Log("Up Swipe");
+                        inAir = true;
                         Jump();
                     }
-                    //}
-                    //else
-                    //{   //the vertical movement is greater than the horizontal movement
-                    //    if (lp.y > fp.y)
-                    //    {   
-                    //        Debug.Log("Up Swipe");
-                    //        Jump();
-                    //    }
-                    //}
                 }
             }
         }
     }
 
+    public void MouseSwipe()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            //save began touch 2d point
+            firstPressPos = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
+        }
+        if (Input.GetMouseButtonUp(0))
+        {
+            //save ended touch 2d point
+            secondPressPos = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
+
+            //create vector from the two points
+            currentSwipe = new Vector2(secondPressPos.x - firstPressPos.x, secondPressPos.y - firstPressPos.y);
+
+            //normalize the 2d vector
+            currentSwipe.Normalize();
+
+            if (currentSwipe.x < 0)
+            {
+                moveLeft();
+            }else if (currentSwipe.x > 0)
+            {
+                moveRight();
+            }
+
+            if (currentSwipe.y > 0)
+            {
+                inAir = true;
+                Jump();
+            }
+          
+        }
+    }
+
     public void moveLeft()
     {
-        if (transform.position.z < MaxH)
+        if (playersLane > 0)
         {
-            targetPos = new Vector3(transform.position.x, transform.position.y, transform.position.z + ZMod);
-
-            //transform.position = Vector3.MoveTowards(transform.position, targetPos, speed * Time.deltaTime);
-            transform.position = targetPos;
-        }
+            playersLane -= 1;
+        }     
     }
 
     public void moveRight()
     {
-        if (transform.position.z > MinH)
+        if (playersLane < 2)
         {
-            targetPos = new Vector3(transform.position.x, transform.position.y, transform.position.z - ZMod);
-
-            // transform.position = Vector3.MoveTowards(transform.position, targetPos, speed * Time.deltaTime);
-            transform.position = targetPos;
+            playersLane += 1;
         }
     }
 
@@ -183,13 +189,6 @@ public class playerControler : MonoBehaviour {
 
     public void Jump()
     {
-        //float upForce = 20, forwardForce = 5;
-
-        //Rigidbody Rb = GetComponent<Rigidbody>();
-
-        //Rb.AddForce(Vector3.up * upForce);
-        //Rb.AddForce(Vector3.right * forwardForce);
-
         Vector3 p = FindNextPlatform();
 
        Rigidbody rigid = GetComponent<Rigidbody>();
@@ -205,6 +204,7 @@ public class playerControler : MonoBehaviour {
 
         // Planar distance between objects
         float distance = Vector3.Distance(planarTarget, planarPostion);
+
         // Distance along the y axis between objects
         float yOffset = transform.position.y - p.y;
 

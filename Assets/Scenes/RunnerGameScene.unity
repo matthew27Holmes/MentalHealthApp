@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.30036062, g: 0.25133297, b: 0.20512995, a: 1}
+  m_IndirectSpecularColor: {r: 0.29899752, g: 0.2507531, b: 0.20416611, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -383,6 +383,11 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 218498286}
   m_CullTransparentMesh: 0
+--- !u!20 &248916655 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 20836524903967842, guid: 4b41f8c1bd6117a49b3ac69004d6c407,
+    type: 2}
+  m_PrefabInternal: {fileID: 1066127578}
 --- !u!1 &261855084
 GameObject:
   m_ObjectHideFlags: 0
@@ -895,7 +900,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4249220985555388, guid: 4b41f8c1bd6117a49b3ac69004d6c407, type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 114631563587462180, guid: 4b41f8c1bd6117a49b3ac69004d6c407,
         type: 2}
@@ -927,6 +932,11 @@ Prefab:
       propertyPath: initialAngle
       value: 45
       objectReference: {fileID: 0}
+    - target: {fileID: 114631563587462180, guid: 4b41f8c1bd6117a49b3ac69004d6c407,
+        type: 2}
+      propertyPath: mainCamera
+      value: 
+      objectReference: {fileID: 248916655}
     m_RemovedComponents:
     - {fileID: 114493269408860254, guid: 4b41f8c1bd6117a49b3ac69004d6c407, type: 2}
   m_SourcePrefab: {fileID: 100100000, guid: 4b41f8c1bd6117a49b3ac69004d6c407, type: 2}
@@ -1306,20 +1316,20 @@ TrailRenderer:
       - serializedVersion: 3
         time: 0
         value: 1
-        inSlope: 0
-        outSlope: 0
+        inSlope: -0.053404316
+        outSlope: -0.053404316
         tangentMode: 0
         weightedMode: 0
         inWeight: 0.33333334
-        outWeight: 0.33333334
+        outWeight: 0.26623377
       - serializedVersion: 3
         time: 1
         value: 0
-        inSlope: 0
-        outSlope: 0
+        inSlope: 0.08421435
+        outSlope: 0.08421435
         tangentMode: 0
         weightedMode: 0
-        inWeight: 0
+        inWeight: 0.11255413
         outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
@@ -1359,7 +1369,7 @@ TrailRenderer:
     textureMode: 0
     generateLightingData: 0
   m_MinVertexDistance: 0.01
-  m_Autodestruct: 1
+  m_Autodestruct: 0
   m_Emitting: 1
 --- !u!224 &1256797135
 RectTransform:
@@ -1368,15 +1378,15 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1256797133}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.23}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 15.28, y: 3.38}
+  m_AnchoredPosition: {x: 14.419377, y: 4.5001698}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1335344348
