@@ -11,6 +11,7 @@ public class PauseManger : MonoBehaviour
     public GameManger GM;
     private Image currentImage;
     public AudioSource Audio;
+    public GameObject[] PuaseMenueItems;
 
     public void Start()
     {
@@ -20,18 +21,16 @@ public class PauseManger : MonoBehaviour
 
     public void childrenActiveState(bool ActiveState)
     {
-        for (int i = 0; i < this.transform.childCount; i++)
+        foreach(GameObject child in PuaseMenueItems)
         {
-            GameObject child = transform.GetChild(i).gameObject;
             child.SetActive(ActiveState);
         }
     }
 
     public void setSongTitle()
     {
-        for (int i = 0; i < this.transform.childCount; i++)
+        foreach (GameObject child in PuaseMenueItems)
         {
-            GameObject child = transform.GetChild(i).gameObject;
             if (child.tag == "SongText")
             {
                 Text text = child.transform.GetChild(0).gameObject.GetComponent<Text>();

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
+[ExecuteInEditMode]
 
 public class playerControler : MonoBehaviour {
 
@@ -26,40 +27,49 @@ public class playerControler : MonoBehaviour {
     public int playersLane;
     public string[] LaneTags;
     public bool inAir;
+    public bool doubleJump;
     
 
     void Start()
     {
         dragDistance = Screen.height * 5 / 100; //dragDistance is 15% height of the screen
         OnPlatform = true;
+        doubleJump = false;
         playersLane = 1;
     }
 
     // Update is called once per frame
-    void Update () {
-
-        createTouchTrail();
-
-        if (!inAir)
-        {
-            MouseSwipe();
-            SwipeControls();
-        }
+    void Update()
+    {
+#if UNITY_EDITOR
+        MouseSwipe();
+#endif
+#if UNITY_ANDROID
+        SwipeControls();
+#endif
     }
 
-    void createTouchTrail()
+    void createTouchTrail( Vector3 inputPos)
     {
+        tailToggle(true);
         float Distance = 10;
-        Ray r = Camera.main.ScreenPointToRay(Input.mousePosition);
+        Ray r = Camera.main.ScreenPointToRay(inputPos);//Input.mousePosition);
         Vector3 pos = r.GetPoint(Distance);
         swipeInput.transform.position = pos;
+    }
+
+    void tailToggle(bool ActiveState)
+    {
+        swipeInput.SetActive(ActiveState);
     }
 
     public void SwipeControls()
     {
         if (Input.touchCount == 1)
         {
+            
             Touch touch = Input.GetTouch(0);
+         //   createTouchTrail(touch.position); //removed swipe tail
 
             if (touch.phase == TouchPhase.Began)
             {
@@ -89,11 +99,30 @@ public class playerControler : MonoBehaviour {
                     }
                     if (lp.y > fp.y)
                     {
-                        Debug.Log("Up Swipe");
-                        inAir = true;
-                        Jump();
+                        Debug.Log("Up Swipe");   
+                        //removed jump constarints on mobile 
+                        // need to fix in later build
+
+                        //if (!inAir || doubleJump)
+                        //{
+                        //    if(inAir && doubleJump)
+                        //    {
+                        //        doubleJump = false;
+                        //    }
+                        //    else
+                        //    {
+                        //        doubleJump = true;
+                        //    }
+
+                        //    inAir = true;
+                            Jump();
+                        //}
                     }
                 }
+            }
+            else
+            {
+               tailToggle(false);
             }
         }
     }
@@ -105,8 +134,10 @@ public class playerControler : MonoBehaviour {
             //save began touch 2d point
             firstPressPos = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
         }
+
         if (Input.GetMouseButtonUp(0))
         {
+            tailToggle(false);
             //save ended touch 2d point
             secondPressPos = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
 
@@ -126,11 +157,23 @@ public class playerControler : MonoBehaviour {
 
             if (currentSwipe.y > 0)
             {
-                inAir = true;
-                Jump();
+                if (!inAir || doubleJump)
+                {
+                    if (inAir && doubleJump)
+                    {
+                        doubleJump = false;
+                    }
+                    else
+                    {
+                        doubleJump = true;
+                    }
+
+                    inAir = true;
+                    Jump();
+                }
             }
-          
         }
+       // createTouchTrail(Input.mousePosition);
     }
 
     public void moveLeft()
@@ -148,44 +191,6 @@ public class playerControler : MonoBehaviour {
             playersLane += 1;
         }
     }
-
-    Vector3 FindNextPlatform()
-    {
-        Transform NearestPlat = null;
-        float minDist = Mathf.Infinity;
-
-        GameObject[] PlatformsInLane;
-        PlatformsInLane = GameObject.FindGameObjectsWithTag(LaneTags[playersLane]);
-        foreach (GameObject  platform in PlatformsInLane)
-        {
-            float dis = transform.position.x - platform.transform.position.x;
-            if(dis < minDist)
-            {
-                NearestPlat = platform.transform;
-            }
-        }
-
-        // check plat form is in range 
-
-        float MaxRange = 20.0f;
-        if (NearestPlat == null || transform.position.x - NearestPlat.position.x > MaxRange)
-        {
-            Debug.Log("out of range");
-            float InrangeX = transform.position.x + MaxRange;
-            return new Vector3(InrangeX, transform.position.y, transform.position.z);
-        }
-
-        // account for platform speed
-        Vector3 NearestPlatPostion = NearestPlat.position;
-        if (OnPlatform)
-        {
-            ObsticelBehaviour PlatformBehaviour = NearestPlat.gameObject.GetComponent<ObsticelBehaviour>();
-            NearestPlatPostion.x -= 2.0f * PlatformBehaviour.speed ; // fudge * (obsticle speed * Time.deltaTime);
-        }
-        jumpToPostion = NearestPlatPostion;
-        return NearestPlatPostion;
-    }
-
 
     public void Jump()
     {
@@ -218,6 +223,44 @@ public class playerControler : MonoBehaviour {
 
         // Fire!
         rigid.velocity = finalVelocity;
+    }
+
+    Vector3 FindNextPlatform()
+    {
+        Transform NearestPlat = null;
+        float minDist = Mathf.Infinity;
+
+        GameObject[] PlatformsInLane;
+        PlatformsInLane = GameObject.FindGameObjectsWithTag(LaneTags[playersLane]);
+        foreach (GameObject platform in PlatformsInLane)
+        {
+            float dis = transform.position.x - platform.transform.position.x;
+            if (dis < minDist)
+            {
+                NearestPlat = platform.transform;
+                minDist = dis;
+            }
+        }
+
+        // check plat form is in range 
+
+        float MaxRange = 20.0f;
+        if (NearestPlat == null || transform.position.x - NearestPlat.position.x > MaxRange)
+        {
+            Debug.Log("out of range");
+            float InrangeX = transform.position.x + MaxRange;
+            return new Vector3(InrangeX, transform.position.y, transform.position.z);
+        }
+
+        // account for platform speed
+        Vector3 NearestPlatPostion = NearestPlat.position;
+        if (OnPlatform)
+        {
+            ObsticelBehaviour PlatformBehaviour = NearestPlat.gameObject.GetComponent<ObsticelBehaviour>();
+            NearestPlatPostion.x -= 2.0f * PlatformBehaviour.speed; // fudge * (obsticle speed * Time.deltaTime);
+        }
+        jumpToPostion = NearestPlatPostion;
+        return NearestPlatPostion;
     }
 
     public void die()

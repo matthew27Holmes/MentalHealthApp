@@ -18,19 +18,19 @@ public class Spwaning : MonoBehaviour {
 
     public void Spawn()
     {
-        if (timeBtwSpawn <= 0)
-        {
+       // if (timeBtwSpawn <= 0)
+       // {
             int rand = Random.Range(0, obstacle.Length);
             Instantiate(obstacle[rand], transform.position, transform.rotation);
-            timeBtwSpawn = startTimeBetweenSpwan;
+          //  timeBtwSpawn = startTimeBetweenSpwan;
             if (startTimeBetweenSpwan > minTime)
             {
                 startTimeBetweenSpwan -= decreaseTime;
             }
-        }
-        else
-        {
-            timeBtwSpawn -= Time.deltaTime;
-        }
+      //  }
+      //  else
+        //{
+     //       timeBtwSpawn -= Time.deltaTime;
+     //   }
     }
 }
