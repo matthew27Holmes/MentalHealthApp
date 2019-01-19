@@ -51,6 +51,7 @@ public class ObsticelBehaviour : MonoBehaviour {
             //other.GetComponent<playerControler>().TakeDamge(damage);
             //Destroy(gameObject);
             other.transform.parent = this.transform;
+          //  gameObject.layer = 10;//fix this 
         }
     }
 
@@ -62,6 +63,7 @@ public class ObsticelBehaviour : MonoBehaviour {
             //other.GetComponent<playerControler>().TakeDamge(damage);
             //Destroy(gameObject);
             other.transform.parent = other.transform;
+          // gameObject.layer = 9;// fix this 
         }
     }
 }

@@ -234,12 +234,15 @@ public class playerControler : MonoBehaviour {
         PlatformsInLane = GameObject.FindGameObjectsWithTag(LaneTags[playersLane]);
         foreach (GameObject platform in PlatformsInLane)
         {
-            float dis = transform.position.x - platform.transform.position.x;
-            if (dis < minDist)
-            {
-                NearestPlat = platform.transform;
-                minDist = dis;
-            }
+           // if (platform.layer == 9)//fix later
+          //  {
+                float dis = Vector2.Distance(transform.position, platform.transform.position);//transform.position.x - platform.transform.position.x;
+                if (dis < minDist)
+                {
+                    NearestPlat = platform.transform;
+                    minDist = dis;
+                }
+          //  }
         }
 
         // check plat form is in range 
