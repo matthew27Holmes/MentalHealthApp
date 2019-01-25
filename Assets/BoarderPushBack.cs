@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class BoarderPushBack : MonoBehaviour {
 
+    float BreezeFroce = 0.5f;
+
     private void OnTriggerExit(Collider other)
     {
         if(other.tag == "Player")
@@ -11,12 +13,12 @@ public class BoarderPushBack : MonoBehaviour {
 
         }
     }
+
     void pushBackBreeze(GameObject player)
     {
+        Rigidbody rigidbody = player.GetComponent<Rigidbody>();
+        Vector3 PushBackVelocity = transform.InverseTransformDirection(rigidbody.velocity);
 
-    }
-    Vector3 findPlayersDirection(Transform player)
-    {
-
+        rigidbody.AddForce(PushBackVelocity * BreezeFroce);
     }
 }
