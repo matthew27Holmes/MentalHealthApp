@@ -83,6 +83,12 @@
     <Compile Include="Assets\Scripts\SwipeInput.cs" />
     <Compile Include="Assets\Scripts\WaterGroup.cs" />
     <Compile Include="Assets\Scripts\WinStateHandler.cs" />
+    <Compile Include="Assets\Sky FX Pack\Scripts\LightBeamsControlScript.cs" />
+    <Compile Include="Assets\Sky FX Pack\Scripts\LookAtBehaviour.cs" />
+    <Compile Include="Assets\Sky FX Pack\Scripts\LookAtCameraBehaviour.cs" />
+    <Compile Include="Assets\Sky FX Pack\Scripts\RayBehavior.cs" />
+    <Compile Include="Assets\Sky FX Pack\Scripts\RotateBehaviour.cs" />
+    <Compile Include="Assets\Sky FX Pack\Scripts\ScrollBehaviour.cs" />
     <Compile Include="Assets\TestFlickFlying.cs" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>C:/Users/Matt/Documents/UWE GAMES TEC WORK/year three/CTP/MentalHealthApp/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
