@@ -4,69 +4,61 @@ using UnityEngine;
 
 public class TestFlickFlying : MonoBehaviour {
 
-    private const int VECTOR_COUNT = 5;
-    private int vectorIndex = 0;
-    private Vector3[] positionChanges;
-    private Vector3 prevMousePosition;
-    private float[] prevTimes;
-    private bool curDown = false;
-    private bool prevDown = false;
+    Dictionary<int, Vector2> activeTouches = new Dictionary<int, Vector2>();
 
-    void Start()
+    CharacterController controller;
+    float baseSpeed = 10.0f;
+    float rotSpeedX = 3.0f;
+    float rotSpeedY = 1.5f;
+
+
+    private void Start()
     {
-        prevMousePosition = Vector3.zero;
-        positionChanges = new Vector3[VECTOR_COUNT];
-        prevTimes = new float[VECTOR_COUNT];
-        for (int i = 0; i < VECTOR_COUNT; i++)
-        {
-            positionChanges[i] = Vector3.zero;
-            prevTimes[i] = 0;
-        }
+        controller = GetComponent<CharacterController>();
+
     }
 
-    void Update()
+    private void Update()
     {
-        if (curDown)
+        Vector3 moveVector = transform.forward * baseSpeed;
+
+        Vector3 inputs = GetPlayerSwipe();
+
+        Vector3 yaw = inputs.x * transform.right * rotSpeedX * Time.deltaTime;
+        Vector3 pitch = inputs.y * transform.up * rotSpeedY * Time.deltaTime;
+        Vector3 direction = yaw + pitch;
+
+        moveVector += direction;
+        transform.rotation = Quaternion.LookRotation(moveVector);
+
+        controller.Move(moveVector * Time.deltaTime);
+    }
+
+    Vector3 GetPlayerSwipe()
+    {
+        Vector3 Swipe = Vector3.zero;
+        foreach (Touch touch in Input.touches)
         {
-            // if still down just follow the mouse (finger)
-            Vector3 amountMoved = Camera.main.ScreenToWorldPoint(positionChanges[(vectorIndex - 1 + VECTOR_COUNT) % VECTOR_COUNT]) - Camera.main.ScreenToWorldPoint(new Vector2(0, 0));
-            transform.position = transform.position + amountMoved;
-        }
-        else if (prevDown)
-        {
-            // just came up so calculate and set velocity
-            float totalTime = 0;
-            Vector3 totalDistance = Vector3.zero;
-            Vector3 velocity;
-            for (int i = 0; i < VECTOR_COUNT; i++)
+            if (touch.phase == TouchPhase.Began)
             {
-                totalTime += prevTimes[i];
-                totalDistance += positionChanges[i];
+                activeTouches.Add(touch.fingerId, touch.position);
             }
-            velocity = totalDistance / totalTime;
-            velocity = Camera.main.ScreenToWorldPoint(velocity) - Camera.main.ScreenToWorldPoint(Vector3.zero);
-            rigidbody2D.velocity = velocity;
+            else if (touch.phase == TouchPhase.Ended)
+            {
+                if (activeTouches.ContainsKey(touch.fingerId))
+                {
+                    activeTouches.Remove(touch.fingerId);
+                }
+            }
+            else
+            {
+                float mag = 0;
+                Swipe = (touch.position - activeTouches[touch.fingerId]);
+                mag = Swipe.magnitude / 300;
+                Swipe = Swipe.normalized * mag;
+            }
         }
-
-        positionChanges[vectorIndex] = Input.mousePosition - prevMousePosition;
-        prevTimes[vectorIndex] = Time.deltaTime;
-        vectorIndex = (vectorIndex + 1) % VECTOR_COUNT;
-
-        prevDown = curDown;
-        prevMousePosition = Input.mousePosition;
-    }
-
-    void OnMouseDown()
-    {
-        print("down");
-        curDown = true;
-        rigidbody2D.velocity = Vector2.zero;
-    }
-
-    void OnMouseUp()
-    {
-        print("up");
-        curDown = false;
+        return Swipe;
     }
 }
-}
+
