@@ -2,31 +2,27 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BoarderPushBack : MonoBehaviour {
+public class BoarderPushBack : MonoBehaviour
+{
 
-    float BreezeFroce = 0.5f;
+  //  float BreezeFroce = 0.5f;
 
     private void OnTriggerExit(Collider other)
     {
-        if(other.tag == "Player")
+        if (other.tag == "Player")
         {
-            //pushBackBreeze(other.gameObject);
+            BirdController bird = other.gameObject.GetComponent<BirdController>();
+            bird.UTurn = true;
         }
     }
-
-
-    /// <summary>
-    /// Get players direction 
-    /// slowly turn around so they are facing the way they came from 
-    /// </summary>
-    /// <param name="player"></param>
-    void pushBackBreeze(GameObject player)
+    private void OnTriggerEnter(Collider other)
     {
-        // should flip player upside down and push back 
-
-        Rigidbody rigidbody = player.GetComponent<Rigidbody>();
-        Vector3 PushBackVelocity = transform.InverseTransformDirection(rigidbody.velocity);
-
-        rigidbody.AddForce(PushBackVelocity * BreezeFroce);
+        if (other.tag == "Player")
+        {
+            BirdController bird = other.gameObject.GetComponent<BirdController>();
+            bird.UTurn = false;
+        }
     }
 }
+
+

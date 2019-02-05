@@ -10,6 +10,8 @@ TagManager:
   - Lane1
   - Lane2
   - Lane3
+  - Fire
+  - Water
   layers:
   - Default
   - TransparentFX

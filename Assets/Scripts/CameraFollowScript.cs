@@ -8,8 +8,8 @@ public class CameraFollowScript : MonoBehaviour {
 
     Vector3 DesiredPostion;
 
-     float offset= 1.5f;
-     float distance= 1.0f;
+   public float offset= 1.5f;
+   public float distance= 1.0f;
 
     private void Update()
     {
