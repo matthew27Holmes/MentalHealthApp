@@ -61,28 +61,40 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Environment\Water (Basic)\Scripts\WaterBasic.cs" />
-    <Compile Include="Assets\Environment\Water\Water\Scripts\Displace.cs" />
-    <Compile Include="Assets\Environment\Water\Water\Scripts\GerstnerDisplace.cs" />
-    <Compile Include="Assets\Environment\Water\Water\Scripts\MeshContainer.cs" />
-    <Compile Include="Assets\Environment\Water\Water\Scripts\PlanarReflection.cs" />
-    <Compile Include="Assets\Environment\Water\Water\Scripts\SpecularLighting.cs" />
-    <Compile Include="Assets\Environment\Water\Water\Scripts\Water.cs" />
-    <Compile Include="Assets\Environment\Water\Water\Scripts\WaterBase.cs" />
-    <Compile Include="Assets\Environment\Water\Water\Scripts\WaterTile.cs" />
+    <Compile Include="Assets\Enviroment low poly\EasyPolyMap\Code\EPMMaterialAgent.cs" />
+    <Compile Include="Assets\Enviroment low poly\EasyPolyMap\Code\EPMObjExporter.cs" />
+    <Compile Include="Assets\Enviroment low poly\EasyPolyMap\Code\EPMPolyTerrainCreator.cs" />
+    <Compile Include="Assets\Enviroment low poly\EasyPolyMap\Code\EPMPreDefinedTools.cs" />
+    <Compile Include="Assets\Enviroment low poly\EasyPolyMap\Demos\EPMDemoCharacterController.cs" />
+    <Compile Include="Assets\Enviroment low poly\EasyPolyMap\Demos\EPMDemoScene.cs" />
+    <Compile Include="Assets\Enviroment low poly\LowPolyEnviromentAssets\Scripts\FoliageSpawner.cs" />
+    <Compile Include="Assets\Enviroment low poly\LowPolyEnviromentAssets\Scripts\Index2D.cs" />
+    <Compile Include="Assets\Enviroment low poly\LowPolyEnviromentAssets\Scripts\IslandGenerator.cs" />
+    <Compile Include="Assets\Enviroment low poly\LowPolyEnviromentAssets\Scripts\TakeScreenshot.cs" />
+    <Compile Include="Assets\Enviroment low poly\LowPolyEnviromentAssets\Scripts\Utilities.cs" />
+    <Compile Include="Assets\Enviroment low poly\LowPolyEnviromentAssets\Scripts\UvExporter.cs" />
+    <Compile Include="Assets\Enviroment low poly\LowPolyEnviromentAssets\Scripts\VersionInfo.cs" />
     <Compile Include="Assets\Scripts\BirdController.cs" />
     <Compile Include="Assets\Scripts\BoarderPushBack.cs" />
     <Compile Include="Assets\Scripts\CameraFollowScript.cs" />
+    <Compile Include="Assets\Scripts\CloudSpawner.cs" />
     <Compile Include="Assets\Scripts\GameManger.cs" />
     <Compile Include="Assets\Scripts\WaterGroup.cs" />
-    <None Include="Assets\Environment\Water (Basic)\DO_NOT_WORK_IN_VR.txt" />
-    <None Include="Assets\Environment\Water\Water4\Shaders\FXWater4Simple.shader" />
-    <None Include="Assets\Environment\Water\DO_NOT_WORK_IN_VR.txt" />
-    <None Include="Assets\Environment\Water (Basic)\Shaders\FXWaterBasic.shader" />
-    <None Include="Assets\Environment\Water\Water\Shaders\FXWaterPro.shader" />
+    <None Include="Assets\Enviroment low poly\EasyPolyMap\Demos\OtherDemoData\BunnyIsland.txt" />
+    <None Include="Assets\Enviroment low poly\EasyPolyMap\Demos\AutumnVally\AutumnVally_data.txt" />
+    <None Include="Assets\Enviroment low poly\EasyPolyMap\Documents\StepByStepDemoData.txt" />
+    <None Include="Assets\EPMTerrainOutput\LowPolyValley\LowPolyValley_data.txt" />
+    <None Include="Assets\Enviroment low poly\LowPolyEnviromentAssets\Shader\VertexColor.shader" />
+    <None Include="Assets\Enviroment low poly\EasyPolyMap\Demos\OtherDemoData\Circle_Island_Data.txt" />
+    <None Include="Assets\EPMTerrainOutput\EPMDefaultName\EPMDefaultName_data.txt" />
+    <None Include="Assets\Enviroment low poly\LowPolyEnviromentAssets\README.txt" />
+    <None Include="Assets\Enviroment low poly\EasyPolyMap\Demos\OtherDemoData\BasicTerrain.txt" />
+    <None Include="Assets\EPMTerrainOutput\EPMDefaultName_data20190208133002.txt" />
+    <None Include="Assets\EPMTerrainOutput\Vally\Vally_data.txt" />
+    <None Include="Assets\Enviroment low poly\EasyPolyMap\Demos\SpringIsland\SpringIsland_data.txt" />
+    <None Include="Assets\EPMTerrainOutput\EPMDefaultName_data20190208132913.txt" />
+    <None Include="Assets\Enviroment low poly\EasyPolyMap\3rdParty\readme.txt" />
     <None Include="Assets\FantasyEnvironments\Environments\README.txt" />
-    <None Include="Assets\Environment\Water\Water4\Shaders\WaterInclude.cginc" />
-    <None Include="Assets\Environment\Water\Water4\Shaders\FXWater4Advanced.shader" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>D:/MentalHealthApp/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>
@@ -289,6 +301,12 @@
     </Reference>
     <Reference Include="UnityEngine.SpatialTracking">
       <HintPath>C:/Program Files/Unity2018.2.2/Editor/Data/UnityExtensions/Unity/UnitySpatialTracking/RuntimeEditor/UnityEngine.SpatialTracking.dll</HintPath>
+    </Reference>
+    <Reference Include="LitJson">
+      <HintPath>D:/MentalHealthApp/Assets/Enviroment low poly/EasyPolyMap/3rdParty/LitJson.dll</HintPath>
+    </Reference>
+    <Reference Include="EasyPolyMapCore">
+      <HintPath>D:/MentalHealthApp/Assets/Enviroment low poly/EasyPolyMap/Code/EasyPolyMapCore.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.Analytics">
       <HintPath>C:/Users/mp2-holmes/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.analytics@2.0.16/UnityEngine.Analytics.dll</HintPath>
