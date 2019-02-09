@@ -154,14 +154,14 @@ public class BirdController : MonoBehaviour {
 
     void UTurnBehaviour()
     {
-        Vector3 moveVector = transform.forward * baseSpeed;
+        Vector3 moveVector = transform.forward * (baseSpeed * 2);
 
         Vector2 Inverse = -transform.position.normalized;//new Vector2(0.5f,0.5f);
 
-        Vector3 yaw = Inverse.x * transform.right * rotSpeedX * Time.deltaTime;
+        Vector3 yaw = Inverse.x * transform.right * (rotSpeedX * 2) * Time.deltaTime;
         anim.SetFloat(flyingDirectionXHash, Inverse.x);
 
-        Vector3 pitch = Inverse.y * transform.up * rotSpeedY * Time.deltaTime;
+        Vector3 pitch = Inverse.y * transform.up * (rotSpeedY *2) * Time.deltaTime;
         anim.SetFloat(flyingDirectionYHash, Inverse.y);
 
         Vector3 direction = yaw + pitch;
