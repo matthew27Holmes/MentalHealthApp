@@ -29,6 +29,7 @@ GameObject:
   - component: {fileID: 3342924}
   - component: {fileID: 2310212}
   - component: {fileID: 6413776}
+  - component: {fileID: 114756799836091402}
   m_Layer: 0
   m_Name: Cloud_Cumulus_Fluffy
   m_TagString: Untagged
@@ -65,6 +66,7 @@ GameObject:
   - component: {fileID: 3313330}
   - component: {fileID: 2309030}
   - component: {fileID: 6474988}
+  - component: {fileID: 114536106336060778}
   m_Layer: 0
   m_Name: Clouds_cumulonimbus
   m_TagString: Untagged
@@ -116,6 +118,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 402026}
+  - component: {fileID: 114209721047666014}
   m_Layer: 0
   m_Name: Clouds_Cumulonimbus_G2
   m_TagString: Untagged
@@ -148,7 +151,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 167220}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 209.9, y: 25.9, z: 105.778625}
+  m_LocalPosition: {x: 209.9, y: 183.9, z: 105.778625}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 434918}
@@ -655,3 +658,39 @@ Prefab:
   m_SourcePrefab: {fileID: 0}
   m_RootGameObject: {fileID: 167220}
   m_IsPrefabAsset: 1
+--- !u!114 &114209721047666014
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 167220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a300cf4ec2d501546af4da7c2a9a88fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 1
+--- !u!114 &114536106336060778
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 130096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a300cf4ec2d501546af4da7c2a9a88fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 1
+--- !u!114 &114756799836091402
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 104836}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a300cf4ec2d501546af4da7c2a9a88fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 1

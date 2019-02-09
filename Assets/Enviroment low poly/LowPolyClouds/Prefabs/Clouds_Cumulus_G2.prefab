@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3325688}
   - component: {fileID: 2376458}
   - component: {fileID: 6465330}
+  - component: {fileID: 114840822529531550}
   m_Layer: 0
   m_Name: Cloud_Cumulus (5)
   m_TagString: Untagged
@@ -47,6 +48,7 @@ GameObject:
   - component: {fileID: 3314260}
   - component: {fileID: 2301352}
   - component: {fileID: 6407530}
+  - component: {fileID: 114173200174016450}
   m_Layer: 0
   m_Name: Cloud_Cumulus (2)
   m_TagString: Untagged
@@ -65,6 +67,7 @@ GameObject:
   - component: {fileID: 3384398}
   - component: {fileID: 2315338}
   - component: {fileID: 6431896}
+  - component: {fileID: 114073547323898006}
   m_Layer: 0
   m_Name: Cloud_Cumulus (1)
   m_TagString: Untagged
@@ -98,6 +101,7 @@ GameObject:
   - component: {fileID: 3338462}
   - component: {fileID: 2344174}
   - component: {fileID: 6453932}
+  - component: {fileID: 114691336126940992}
   m_Layer: 0
   m_Name: Cloud_Cumulus (4)
   m_TagString: Untagged
@@ -116,6 +120,7 @@ GameObject:
   - component: {fileID: 3309924}
   - component: {fileID: 2395620}
   - component: {fileID: 6477340}
+  - component: {fileID: 114263115653246374}
   m_Layer: 0
   m_Name: Cloud_Cumulus
   m_TagString: Untagged
@@ -134,6 +139,7 @@ GameObject:
   - component: {fileID: 3370092}
   - component: {fileID: 2338204}
   - component: {fileID: 6494962}
+  - component: {fileID: 114781454404731108}
   m_Layer: 0
   m_Name: Cloud_Cumulus (3)
   m_TagString: Untagged
@@ -161,7 +167,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 171218}
   m_LocalRotation: {x: 0, y: 0.15545678, z: 0, w: 0.98784274}
-  m_LocalPosition: {x: 76.291214, y: 57, z: 104.04318}
+  m_LocalPosition: {x: 76.291214, y: 215, z: 104.04318}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 452356}
@@ -655,3 +661,75 @@ Prefab:
   m_SourcePrefab: {fileID: 0}
   m_RootGameObject: {fileID: 171218}
   m_IsPrefabAsset: 1
+--- !u!114 &114073547323898006
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 168106}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a300cf4ec2d501546af4da7c2a9a88fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 1
+--- !u!114 &114173200174016450
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 167178}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a300cf4ec2d501546af4da7c2a9a88fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 1
+--- !u!114 &114263115653246374
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 193582}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a300cf4ec2d501546af4da7c2a9a88fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 1
+--- !u!114 &114691336126940992
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 182212}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a300cf4ec2d501546af4da7c2a9a88fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 1
+--- !u!114 &114781454404731108
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 195954}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a300cf4ec2d501546af4da7c2a9a88fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 1
+--- !u!114 &114840822529531550
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 117614}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a300cf4ec2d501546af4da7c2a9a88fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 1

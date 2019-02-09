@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class CloudSpawner : MonoBehaviour {
 
-	// Use this for initialization
+    public GameObject[] Clouds;
+	
+    // Use this for initialization
 	void Start () {
 		
 	}
@@ -13,4 +15,17 @@ public class CloudSpawner : MonoBehaviour {
 	void Update () {
 		
 	}
+
+    void SpawnCloud()
+    {
+        int ranCloudIndex = Random.Range(0, Clouds.Length);
+
+        GameObject Cloud = Instantiate(Clouds[ranCloudIndex], transform.position, Quaternion.identity);
+        Cloud.transform.parent = transform;
+    }
+
+    void DestroyCloud()
+    {
+
+    }
 }
