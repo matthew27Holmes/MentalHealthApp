@@ -12,6 +12,8 @@ TagManager:
   - Lane3
   - Fire
   - Water
+  - terrianManger
+  - cloud
   layers:
   - Default
   - TransparentFX

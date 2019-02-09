@@ -23,6 +23,23 @@ public class BoarderPushBack : MonoBehaviour
             bird.UTurn = false;
         }
     }
+
+    //private void OnTriggerExit(Collider other)
+    //{
+    //    if (other.tag == "Player")
+    //    {
+    //        BirdController bird = other.gameObject.GetComponent<BirdController>();
+    //        bird.UTurn = false;
+    //    }
+    //}
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    if (other.tag == "Player")
+    //    {
+    //        BirdController bird = other.gameObject.GetComponent<BirdController>();
+    //        bird.UTurn = true;
+    //    }
+    //}
 }
 
 

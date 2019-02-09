@@ -6,8 +6,7 @@ public class BirdController : MonoBehaviour {
 
     public AudioClip song1;
     public AudioClip song2;
-    public AudioClip flyAway1;
-    public AudioClip flyAway2;
+    public AudioClip flyingSound;
     AudioSource ASource;
 
     public GameObject birdModel;
@@ -17,6 +16,8 @@ public class BirdController : MonoBehaviour {
     int flyingBoolHash;
     int flyingDirectionXHash;
     int flyingDirectionYHash;
+
+    float dragDistance;  //minimum distance for a swipe to be registered
 
 
     Dictionary<int, Vector2> activeTouches = new Dictionary<int, Vector2>();
@@ -40,22 +41,16 @@ public class BirdController : MonoBehaviour {
         flyingDirectionXHash = Animator.StringToHash("flyingDirectionX");
         flyingDirectionYHash = Animator.StringToHash("flyingDirectionY");
 
+        dragDistance = Screen.height * 0.001f; //dragDistance is 15% height of the screen
     }
 
     private void Update()
     {
         anim.SetBool(flyingBoolHash, true);
-
-        if (Random.value < .5)
-        {
-            ASource.PlayOneShot(flyAway1, .1f);
-        }
-        else
-        {
-            ASource.PlayOneShot(flyAway2, .1f);
-        }
+        ASource.PlayOneShot(flyingSound, .1f);
 
         Vector3 inputs = GetPlayerSwipe();
+
 
         if (!UTurn)
         {
@@ -65,24 +60,20 @@ public class BirdController : MonoBehaviour {
         {
             UTurnBehaviour();
         }
-        //PlaySong();
+        
     }
 
 
     void PlaySong()
     {
-        if (Random.value < .01)
+        if (Random.value < .5)
         {
-            if (Random.value < .5)
-            {
-                ASource.PlayOneShot(song1, 1);
-            }
-            else
-            {
-                ASource.PlayOneShot(song2, 1);
-            }
+            ASource.PlayOneShot(song1, 1);
         }
-
+        else
+        {
+            ASource.PlayOneShot(song2, 1);
+        }
     }
 
     void Fly(Vector3 inputs)
@@ -128,8 +119,17 @@ public class BirdController : MonoBehaviour {
             {
                 float mag = 0;
                 Swipe = (touch.position - activeTouches[touch.fingerId]);
-                mag = Swipe.magnitude / 300;
-                Swipe = Swipe.normalized * mag;
+                if (Mathf.Abs(Swipe.x) > dragDistance || Mathf.Abs(Swipe.y) > dragDistance || Mathf.Abs(Swipe.z) > dragDistance)
+                {
+                    mag = Swipe.magnitude / 300;
+                    Swipe = Swipe.normalized * mag;
+                }
+                else
+                {
+                    
+                    // tap not drag play sound
+                    PlaySong();
+                }
             }
         }
         return Swipe;

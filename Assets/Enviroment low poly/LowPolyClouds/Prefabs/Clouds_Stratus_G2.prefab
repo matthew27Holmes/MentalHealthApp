@@ -10,7 +10,7 @@ GameObject:
   - component: {fileID: 496290}
   m_Layer: 0
   m_Name: Clouds_Stratus_G2
-  m_TagString: Untagged
+  m_TagString: cloud
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -26,6 +26,7 @@ GameObject:
   - component: {fileID: 3326772}
   - component: {fileID: 2384382}
   - component: {fileID: 6464058}
+  - component: {fileID: 114915904170773018}
   m_Layer: 0
   m_Name: Clouds_stratus (4)
   m_TagString: Untagged
@@ -44,6 +45,7 @@ GameObject:
   - component: {fileID: 3369744}
   - component: {fileID: 2382192}
   - component: {fileID: 6401312}
+  - component: {fileID: 114753453291492524}
   m_Layer: 0
   m_Name: Clouds_stratus
   m_TagString: Untagged
@@ -62,6 +64,7 @@ GameObject:
   - component: {fileID: 3340628}
   - component: {fileID: 2397722}
   - component: {fileID: 6479300}
+  - component: {fileID: 114636238972049748}
   m_Layer: 0
   m_Name: Clouds_stratus (3)
   m_TagString: Untagged
@@ -80,6 +83,7 @@ GameObject:
   - component: {fileID: 3324752}
   - component: {fileID: 2306788}
   - component: {fileID: 6486402}
+  - component: {fileID: 114195795537016962}
   m_Layer: 0
   m_Name: Clouds_stratus (1)
   m_TagString: Untagged
@@ -98,6 +102,7 @@ GameObject:
   - component: {fileID: 3386112}
   - component: {fileID: 2366980}
   - component: {fileID: 6438226}
+  - component: {fileID: 114703275543470848}
   m_Layer: 0
   m_Name: Clouds_stratus (2)
   m_TagString: Untagged
@@ -479,3 +484,63 @@ Prefab:
   m_SourcePrefab: {fileID: 0}
   m_RootGameObject: {fileID: 115170}
   m_IsPrefabAsset: 1
+--- !u!114 &114195795537016962
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 134916}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a300cf4ec2d501546af4da7c2a9a88fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 1
+--- !u!114 &114636238972049748
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 132038}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a300cf4ec2d501546af4da7c2a9a88fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 1
+--- !u!114 &114703275543470848
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 155686}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a300cf4ec2d501546af4da7c2a9a88fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 1
+--- !u!114 &114753453291492524
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 124480}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a300cf4ec2d501546af4da7c2a9a88fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 1
+--- !u!114 &114915904170773018
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 122788}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a300cf4ec2d501546af4da7c2a9a88fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 1
