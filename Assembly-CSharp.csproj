@@ -68,8 +68,6 @@
     <Compile Include="Assets\Enviroment low poly\EasyPolyMap\Code\EPMObjExporter.cs" />
     <Compile Include="Assets\Enviroment low poly\EasyPolyMap\Code\EPMPolyTerrainCreator.cs" />
     <Compile Include="Assets\Enviroment low poly\EasyPolyMap\Code\EPMPreDefinedTools.cs" />
-    <Compile Include="Assets\Enviroment low poly\EasyPolyMap\Demos\EPMDemoCharacterController.cs" />
-    <Compile Include="Assets\Enviroment low poly\EasyPolyMap\Demos\EPMDemoScene.cs" />
     <Compile Include="Assets\Example.cs" />
     <Compile Include="Assets\Scripts\BirdController.cs" />
     <Compile Include="Assets\Scripts\BoarderPushBack.cs" />
@@ -77,18 +75,13 @@
     <Compile Include="Assets\Scripts\CloudSpawner.cs" />
     <Compile Include="Assets\Scripts\GameManger.cs" />
     <Compile Include="Assets\Scripts\WaterGroup.cs" />
-    <None Include="Assets\Enviroment low poly\EasyPolyMap\Demos\OtherDemoData\BunnyIsland.txt" />
-    <None Include="Assets\Enviroment low poly\EasyPolyMap\Demos\AutumnVally\AutumnVally_data.txt" />
     <None Include="Assets\Enviroment low poly\EasyPolyMap\Documents\StepByStepDemoData.txt" />
     <None Include="Assets\EPMTerrainOutput\LowPolyValley\LowPolyValley_data.txt" />
     <None Include="Assets\Enviroment low poly\LowPolyEnviromentAssets\PlantAssets\Shader\VertexColor.shader" />
-    <None Include="Assets\Enviroment low poly\EasyPolyMap\Demos\OtherDemoData\Circle_Island_Data.txt" />
     <None Include="Assets\EPMTerrainOutput\EPMDefaultName\EPMDefaultName_data.txt" />
     <None Include="Assets\Enviroment low poly\LowPolyEnviromentAssets\README.txt" />
-    <None Include="Assets\Enviroment low poly\EasyPolyMap\Demos\OtherDemoData\BasicTerrain.txt" />
     <None Include="Assets\EPMTerrainOutput\EPMDefaultName_data20190208133002.txt" />
     <None Include="Assets\EPMTerrainOutput\Vally\Vally_data.txt" />
-    <None Include="Assets\Enviroment low poly\EasyPolyMap\Demos\SpringIsland\SpringIsland_data.txt" />
     <None Include="Assets\EPMTerrainOutput\EPMDefaultName_data20190208132913.txt" />
     <None Include="Assets\BOXOPHOBIC\Skybox Cubemap Extended\Shaders\Skybox Cubemap Extended.shader" />
     <None Include="Assets\Enviroment low poly\EasyPolyMap\3rdParty\readme.txt" />
