@@ -62,8 +62,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\AudioProcessor.cs" />
-    <Compile Include="Assets\CloudBehaviour.cs" />
-    <Compile Include="Assets\CloudEnd.cs" />
     <Compile Include="Assets\Enviroment low poly\EasyPolyMap\Code\EPMMaterialAgent.cs" />
     <Compile Include="Assets\Enviroment low poly\EasyPolyMap\Code\EPMObjExporter.cs" />
     <Compile Include="Assets\Enviroment low poly\EasyPolyMap\Code\EPMPolyTerrainCreator.cs" />
@@ -72,20 +70,21 @@
     <Compile Include="Assets\Scripts\BirdController.cs" />
     <Compile Include="Assets\Scripts\BoarderPushBack.cs" />
     <Compile Include="Assets\Scripts\CameraFollowScript.cs" />
+    <Compile Include="Assets\Scripts\CloudBehaviour.cs" />
+    <Compile Include="Assets\Scripts\CloudEnd.cs" />
     <Compile Include="Assets\Scripts\CloudSpawner.cs" />
     <Compile Include="Assets\Scripts\GameManger.cs" />
     <Compile Include="Assets\Scripts\WaterGroup.cs" />
     <None Include="Assets\Enviroment low poly\EasyPolyMap\Documents\StepByStepDemoData.txt" />
-    <None Include="Assets\EPMTerrainOutput\LowPolyValley\LowPolyValley_data.txt" />
+    <None Include="Assets\Enviroment low poly\EPMTerrainOutput\LowPolyValley\LowPolyValley_data.txt" />
     <None Include="Assets\Enviroment low poly\LowPolyEnviromentAssets\PlantAssets\Shader\VertexColor.shader" />
-    <None Include="Assets\EPMTerrainOutput\EPMDefaultName\EPMDefaultName_data.txt" />
+    <None Include="Assets\Enviroment low poly\EPMTerrainOutput\EPMDefaultName\EPMDefaultName_data.txt" />
     <None Include="Assets\Enviroment low poly\LowPolyEnviromentAssets\README.txt" />
-    <None Include="Assets\EPMTerrainOutput\EPMDefaultName_data20190208133002.txt" />
-    <None Include="Assets\EPMTerrainOutput\Vally\Vally_data.txt" />
-    <None Include="Assets\EPMTerrainOutput\EPMDefaultName_data20190208132913.txt" />
+    <None Include="Assets\Enviroment low poly\EPMTerrainOutput\EPMDefaultName_data20190208133002.txt" />
+    <None Include="Assets\Enviroment low poly\EPMTerrainOutput\Vally\Vally_data.txt" />
+    <None Include="Assets\Enviroment low poly\EPMTerrainOutput\EPMDefaultName_data20190208132913.txt" />
     <None Include="Assets\BOXOPHOBIC\Skybox Cubemap Extended\Shaders\Skybox Cubemap Extended.shader" />
     <None Include="Assets\Enviroment low poly\EasyPolyMap\3rdParty\readme.txt" />
-    <None Include="Assets\FantasyEnvironments\Environments\README.txt" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>D:/MentalHealthApp/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>

@@ -6,8 +6,17 @@ public class BirdController : MonoBehaviour {
 
     public AudioClip song1;
     public AudioClip song2;
+    public AudioClip[] CloudClips;
+    public AudioClip[] FlowerClips;
+    public AudioClip[] GrassClips;
+    public AudioClip[] WaterClips;
+    public AudioClip[] TreeClips;
+
+
     public AudioClip flyingSound;
     AudioSource ASource;
+    public AudioSource EnviromentSound;
+
 
     public GameObject birdModel;
     Animator anim;
@@ -81,10 +90,10 @@ public class BirdController : MonoBehaviour {
         Vector3 moveVector = transform.forward * baseSpeed;
 
         Vector3 yaw = inputs.x * transform.right * rotSpeedX * Time.deltaTime;
-        anim.SetFloat(flyingDirectionXHash, inputs.x);
+        anim.SetFloat(flyingDirectionXHash, inputs.x * rotSpeedX);
 
         Vector3 pitch = inputs.y * transform.up * rotSpeedY * Time.deltaTime;
-        anim.SetFloat(flyingDirectionYHash, inputs.y);
+        anim.SetFloat(flyingDirectionYHash, inputs.y * rotSpeedY);
 
         Vector3 direction = yaw + pitch;
        
@@ -128,7 +137,7 @@ public class BirdController : MonoBehaviour {
                 {
                     
                     // tap not drag play sound
-                    PlaySong();
+                   // PlaySong();
                 }
             }
         }
@@ -142,7 +151,7 @@ public class BirdController : MonoBehaviour {
         //|| (maxYRotaion < 90 && maxYRotaion > 70 || maxYRotaion > 270 && maxYRotaion < 290))
         if (maxXRotaion < 90 && maxXRotaion > 70 || maxXRotaion > 270 && maxXRotaion < 290)             
         {
-            Debug.Log("flip");
+           // Debug.Log("flip");
             return false;
         }
         else
@@ -176,7 +185,46 @@ public class BirdController : MonoBehaviour {
         controller.Move(moveVector * Time.deltaTime);
     }
 
-  
+    void FindObjectSound(string type)
+    {
+        AudioClip clip;
+        Debug.Log(type.ToString());
+        switch (type)
+        {
+            case "Grass":
+                clip = GrassClips[Random.Range(0, GrassClips.Length)];
+                Debug.Log("playing " + clip.name);
+                EnviromentSound.PlayOneShot(clip, 1);
+                break;
+            case "Flower":
+                clip = FlowerClips[Random.Range(0, FlowerClips.Length)];
+                EnviromentSound.PlayOneShot(clip, 1);
+                break;
+            case "Cloud":
+                clip = CloudClips[Random.Range(0, CloudClips.Length)];
+                Debug.Log("playing " + clip.name);
+                EnviromentSound.PlayOneShot(clip, 1);
+                break;
+            case "Water":
+                clip = WaterClips[Random.Range(0, WaterClips.Length)];
+                Debug.Log("playing " + clip.name);
+                EnviromentSound.PlayOneShot(clip, 1);
+                break;
+            case "OldTree":
+                clip = TreeClips[Random.Range(0, TreeClips.Length)];
+                Debug.Log("playing " + clip.name);
+                EnviromentSound.PlayOneShot(clip, 1);
+                break;
+            default:
+                break;
+        }
+
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        FindObjectSound(LayerMask.LayerToName(other.gameObject.layer));
+    }
 }
 
 

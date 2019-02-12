@@ -346,6 +346,12 @@
     <Reference Include="UnityEditor.OSXStandalone.Extensions">
       <HintPath>C:/Program Files/Unity2018.2.2/Editor/Data/PlaybackEngines/MacStandaloneSupport/UnityEditor.OSXStandalone.Extensions.dll</HintPath>
     </Reference>
+    <Reference Include="LitJson">
+      <HintPath>D:/MentalHealthApp/Assets/Enviroment low poly/EasyPolyMap/3rdParty/LitJson.dll</HintPath>
+    </Reference>
+    <Reference Include="EasyPolyMapCore">
+      <HintPath>D:/MentalHealthApp/Assets/Enviroment low poly/EasyPolyMap/Code/EasyPolyMapCore.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEditor.Advertisements">
       <HintPath>C:/Users/mp2-holmes/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.ads@2.0.8/Editor/UnityEditor.Advertisements.dll</HintPath>
     </Reference>
