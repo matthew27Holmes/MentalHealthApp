@@ -5,7 +5,7 @@ using UnityEngine;
 public class CloudEnd : MonoBehaviour {
     public void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("cloud"))
+        if(other.gameObject.layer == LayerMask.NameToLayer("Cloud"))
         {
             Destroy(other.gameObject);
         }

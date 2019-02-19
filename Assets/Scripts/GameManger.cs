@@ -12,7 +12,7 @@ public class GameManger : MonoBehaviour {
     public bool paused = false;
     private void Start()
     {
-        Screen.orientation = ScreenOrientation.Portrait;
+        
 
         if (!GameManagerExists)
         {
@@ -27,7 +27,6 @@ public class GameManger : MonoBehaviour {
 
     public void Update()
     {
-        
     }
 
     public void changeScene(string sceneToChangeTo)
