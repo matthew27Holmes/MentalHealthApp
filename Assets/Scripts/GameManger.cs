@@ -29,6 +29,16 @@ public class GameManger : MonoBehaviour {
     {
     }
 
+    public void LeaveCloudMessage(GameObject cloud)
+    {
+        //change cloud postion to center stage 
+        //bring up text box overlay 
+        // create text 
+        // assaign text with text overlay 
+        // make text a child of cloud
+    }
+
+
     public void changeScene(string sceneToChangeTo)
     {
        // currentScene = sceneToChangeTo;

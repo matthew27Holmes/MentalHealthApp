@@ -4,40 +4,46 @@ using UnityEngine;
 
 public class BoarderPushBack : MonoBehaviour
 {
-
-    //  float BreezeFroce = 0.5f;
-
-    //private void OnTriggerExit(Collider other)
-    //{
-    //    if (other.tag == "Player")
-    //    {
-    //        BirdController bird = other.gameObject.GetComponent<BirdController>();
-    //        bird.UTurn = true;
-    //    }
-    //}
-    //private void OnTriggerEnter(Collider other)
-    //{
-    //    if (other.tag == "Player")
-    //    {
-    //        BirdController bird = other.gameObject.GetComponent<BirdController>();
-    //        bird.UTurn = false;
-    //    }
-    //}
+    public bool KeepWithinSystem;
+    AudioSource PushBackSound;
+    public AudioClip windClip;
+    private void Start()
+    {
+        PushBackSound = GetComponent<AudioSource>();
+    }
 
     private void OnTriggerExit(Collider other)
     {
         if (other.tag == "Player")
         {
-            BirdController bird = other.gameObject.GetComponent<BirdController>();
-            bird.UTurn = false;
+            if (KeepWithinSystem)
+            {
+                BirdController bird = other.gameObject.GetComponent<BirdController>();
+                bird.UTurn = true;
+                PushBackSound.PlayOneShot(windClip, 1);
+            }
+            else
+            {
+                BirdController bird = other.gameObject.GetComponent<BirdController>();
+                bird.UTurn = false;
+            }
         }
     }
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
         {
-            BirdController bird = other.gameObject.GetComponent<BirdController>();
-            bird.UTurn = true;
+            if (KeepWithinSystem)
+            {
+                BirdController bird = other.gameObject.GetComponent<BirdController>();
+                bird.UTurn = false;
+            }
+            else
+            {
+                BirdController bird = other.gameObject.GetComponent<BirdController>();
+                bird.UTurn = true;
+                PushBackSound.PlayOneShot(windClip, 1);
+            }
         }
     }
 }

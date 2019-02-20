@@ -17,6 +17,8 @@ public class BirdController : MonoBehaviour {
     AudioSource ASource;
     public AudioSource EnviromentSound;
 
+    public GameManger gameManger;
+
 
     public GameObject birdModel;
     Animator anim;
@@ -135,13 +137,28 @@ public class BirdController : MonoBehaviour {
                 }
                 else
                 {
-                    
+
                     // tap not drag play sound
+                    TapRay(touch.position);
                    // PlaySong();
                 }
             }
         }
         return Swipe;
+    }
+
+    void TapRay(Vector3 TapPos)
+    {
+        RaycastHit hit;
+        Camera cam = transform.GetComponentInChildren<Camera>();
+        if (Physics.Raycast(TapPos, cam.transform.forward, out hit, LayerMask.NameToLayer("cloud")))
+        {
+            GameObject cloud = hit.transform.gameObject;
+            if(cloud != null)
+            {
+                gameManger.LeaveCloudMessage(cloud);
+            }
+        }
     }
 
     bool StopLoop(Vector3 moveVector)
