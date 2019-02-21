@@ -31,7 +31,10 @@ public class CloudSpawner : MonoBehaviour
             //{
             //    GameObject Cloud = CloudPatten.transform.GetChild(i).gameObject;
             //    CloudBehaviour behaviour = Cloud.GetComponent<CloudBehaviour>();
-            //    behaviour.setSpeed(Random.Range(minCloudSpeed, maxCloudSpeed));
+            //    if(behaviour != null)
+            //    {
+            //        behaviour;
+            //    }
             //}
            
 

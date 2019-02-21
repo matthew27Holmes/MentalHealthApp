@@ -1,20 +1,28 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CloudBehaviour : MonoBehaviour {
 
     float speed = 5.0f;
     bool dead = false;
     bool ParticlesTriggered = false;
-  //  AudioProcessor BeatDetc;
 
-	// Use this for initialization
+    public Text CloudText;
+
+    // Use this for initialization
     void Start () {
-        //GameObject enviroment = GameObject.FindWithTag("terrianManger");
-        //BeatDetc = enviroment.GetComponent<AudioProcessor>();
+        
         dead = false;
         ParticlesTriggered = false;
+
+        GameObject canvas = GameObject.FindGameObjectWithTag("CloudTextManger");
+        CloudText = Instantiate(CloudText.gameObject, this.transform.position,Quaternion.identity).GetComponent<Text>();
+        
+        CloudText.gameObject.SetActive(false);
+        CloudText.name = this.name;
+        CloudText.transform.SetParent(canvas.transform,false);
     }
 
     public void setSpeed(float nwSpeed)
@@ -27,11 +35,22 @@ public class CloudBehaviour : MonoBehaviour {
        // speed = BeatDetc.tapTempo();
         // Move the object upward in world space 1 unit/second.
         transform.Translate(Vector3.right * (speed * Time.deltaTime),Space.World);
-        if(dead)
+
+        //UpdateTextPostion
+        Vector3 textPos = Camera.main.WorldToScreenPoint(this.transform.position);//should use anchor  
+        CloudText.transform.position = textPos;
+
+        if (dead)
         {
             DestoryCloud();
         }
 
+    }
+    
+    public void LeaveCloudMessage(string note)
+    {
+        CloudText.text = note;
+        CloudText.gameObject.SetActive(true);
     }
 
     private void DestoryCloud()
@@ -52,6 +71,7 @@ public class CloudBehaviour : MonoBehaviour {
         {
             if (!particle.IsAlive())
             {
+                Destroy(CloudText);
                 Destroy(this.gameObject);
             }
         }

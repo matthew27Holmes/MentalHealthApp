@@ -10,10 +10,10 @@ public class GameManger : MonoBehaviour {
     private static bool GameManagerExists;
    // private static string currentScene;
     public bool paused = false;
+    public GameObject SettingsMenue;
+
     private void Start()
     {
-        
-
         if (!GameManagerExists)
         {
             GameManagerExists = true;
@@ -25,24 +25,34 @@ public class GameManger : MonoBehaviour {
         }
     }
 
-    public void Update()
-    {
-    }
-
-    public void LeaveCloudMessage(GameObject cloud)
-    {
-        //change cloud postion to center stage 
-        //bring up text box overlay 
-        // create text 
-        // assaign text with text overlay 
-        // make text a child of cloud
-    }
-
-
+  
     public void changeScene(string sceneToChangeTo)
     {
        // currentScene = sceneToChangeTo;
         SceneManager.LoadScene(sceneToChangeTo);
+    }
+
+    public string InputText()
+    {
+        string inputText = "";
+        TouchScreenKeyboard keyboard = TouchScreenKeyboard.Open(inputText, TouchScreenKeyboardType.Default);
+        return inputText;
+    }
+
+    public void Pause()
+    {
+        if(paused)
+        {
+            Time.timeScale = 1;
+            SettingsMenue.SetActive(false);
+            paused = false;
+        }
+        else
+        {
+            Time.timeScale = 0;
+            SettingsMenue.SetActive(true);
+            paused = true;
+        }
     }
 
     public void Quit()
