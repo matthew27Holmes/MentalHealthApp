@@ -12,8 +12,21 @@ public class GameManger : MonoBehaviour {
     public bool paused = false;
     public GameObject SettingsMenue;
 
+    public string helpLineKey = "HelpLine";
+    public string phoneNumber = "";
+    private int helpLineGiven;
+    public GameObject HelpLineSetUpObject;
+    public GameObject HelpLineFailText;
+
     private void Start()
     {
+        helpLineGiven = 0;
+        helpLineGiven = PlayerPrefs.GetInt("helpLineGiven");
+        if (helpLineGiven == 0)
+        {
+            initHelpLineNumber();
+        }
+
         if (!GameManagerExists)
         {
             GameManagerExists = true;
@@ -32,11 +45,51 @@ public class GameManger : MonoBehaviour {
         SceneManager.LoadScene(sceneToChangeTo);
     }
 
+    public void LeaveCloudMessage(GameObject cloud)
+    {
+        Time.timeScale = 0;
+        //should move into focus first
+        CloudBehaviour cloudBehaviour = cloud.GetComponent<CloudBehaviour>();
+        string note = InputText();
+        cloudBehaviour.CloudText.text = note;
+        cloudBehaviour.CloudText.gameObject.SetActive(true);
+        Time.timeScale = 1;
+    }
+
     public string InputText()
     {
         string inputText = "";
-        TouchScreenKeyboard keyboard = TouchScreenKeyboard.Open(inputText, TouchScreenKeyboardType.Default);
+        TouchScreenKeyboard keyboard;
+        keyboard = TouchScreenKeyboard.Open(inputText, TouchScreenKeyboardType.Default);
         return inputText;
+    }
+
+    private void initHelpLineNumber()
+    {
+        Time.timeScale = 0;
+        HelpLineSetUpObject.SetActive(true);
+        HelpLineFailText.SetActive(false);
+    }
+
+    public void SetHelpLineNumber()
+    {
+        InputField inputField = HelpLineSetUpObject.transform.GetComponentInChildren<InputField>();
+
+        int number = 0;
+        phoneNumber = inputField.text;
+        if (int.TryParse(phoneNumber, out number))
+        {
+            Time.timeScale = 1;
+            PlayerPrefs.SetInt("helpLineGiven",1);
+            PlayerPrefs.SetString(helpLineKey, "tel: " + phoneNumber);
+            HelpLineSetUpObject.SetActive(false);
+        }
+        else
+        {
+            HelpLineFailText.SetActive(true);
+            //breakOutCase
+            //PlayerPrefs.SetInt("helpLineGiven",0);
+        }
     }
 
     public void Pause()

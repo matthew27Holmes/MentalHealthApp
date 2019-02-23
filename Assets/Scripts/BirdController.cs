@@ -13,7 +13,7 @@ public class BirdController : MonoBehaviour {
     AudioSource ASource;
     public AudioSource EnviromentSound;
 
-    public GameManger gameManger;
+    public GameManger GM;
 
 
     public GameObject birdModel;
@@ -28,6 +28,7 @@ public class BirdController : MonoBehaviour {
 
 
     Dictionary<int, Vector2> activeTouches = new Dictionary<int, Vector2>();
+    private bool TapTouch;
 
     CharacterController controller;
     public float baseSpeed = 10.0f;
@@ -48,7 +49,7 @@ public class BirdController : MonoBehaviour {
         flyingDirectionXHash = Animator.StringToHash("flyingDirectionX");
         flyingDirectionYHash = Animator.StringToHash("flyingDirectionY");
 
-        dragDistance = Screen.height * 0.001f; //dragDistance is 15% height of the screen
+        dragDistance = Screen.height * 0.001f; //dragDistance is % height of the screen
     }
 
     private void FixedUpdate()
@@ -109,6 +110,7 @@ public class BirdController : MonoBehaviour {
     Vector3 GetPlayerSwipe()
     {
         Vector3 Swipe = Vector3.zero;
+
         foreach (Touch touch in Input.touches)
         {
             if (touch.phase == TouchPhase.Began)
@@ -135,7 +137,11 @@ public class BirdController : MonoBehaviour {
                 {
 
                     // tap not drag play sound
-                    TapRay(touch.position);
+                    if (!TapTouch)
+                    {
+                        TapTouch = true;
+                        TapRay(touch.position);
+                    }
                 }
             }
         }
@@ -144,20 +150,19 @@ public class BirdController : MonoBehaviour {
 
     void TapRay(Vector3 TapPos)
     {
-        Debug.Log("shooting Ray");
         RaycastHit hit;
         Camera cam = transform.GetComponentInChildren<Camera>();
-        if (Physics.Raycast(TapPos, cam.transform.forward, out hit,LayerMask.NameToLayer("Cloud")))
+        if (Physics.Raycast(TapPos, cam.transform.forward, out hit, LayerMask.NameToLayer("Cloud")))
         {
             Debug.Log("Ray Hit Cloud");
-            CloudBehaviour cloud = hit.transform.gameObject.GetComponent<CloudBehaviour>();
-            if(cloud != null)
-            {
-                cloud.LeaveCloudMessage(gameManger.InputText());
-            }
+            GameObject cloud = hit.transform.gameObject;
+
+            GM.LeaveCloudMessage(cloud);
         }
+        TapTouch = false;
     }
 
+    //need to handel loops better
     bool StopLoop(Vector3 moveVector)
     {
         float maxXRotaion = Quaternion.LookRotation(moveVector).eulerAngles.x;

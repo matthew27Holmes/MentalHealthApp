@@ -47,12 +47,6 @@ public class CloudBehaviour : MonoBehaviour {
 
     }
     
-    public void LeaveCloudMessage(string note)
-    {
-        CloudText.text = note;
-        CloudText.gameObject.SetActive(true);
-    }
-
     private void DestoryCloud()
     {
         // strat particle effect kill cloud

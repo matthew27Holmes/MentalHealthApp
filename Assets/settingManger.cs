@@ -12,16 +12,7 @@ public class settingManger : MonoBehaviour {
      wiget the brings up phone */
     // Use this for initialization
 
-    string HelpLine = "tel: 01752791173";
-
-    void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    public GameManger GM;
 
     //https://stackoverflow.com/questions/48906129/make-phone-call-in-unity?noredirect=1&lq=1
     public void CallHelpLine()
@@ -29,7 +20,11 @@ public class settingManger : MonoBehaviour {
 
         /*should look at aoutdailing*/
         //take in any personal numbers GPs/Friends
-        Application.OpenURL(HelpLine);
+        if (PlayerPrefs.GetInt("helpLineGiven") == 1)
+        {
+            string phoneNumber = PlayerPrefs.GetString(GM.helpLineKey);
+            Application.OpenURL(phoneNumber);
+        }
 
     }
 

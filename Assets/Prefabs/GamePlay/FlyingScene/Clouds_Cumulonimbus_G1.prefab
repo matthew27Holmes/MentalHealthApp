@@ -37,7 +37,7 @@ GameObject:
   - component: {fileID: 65477570497422900}
   - component: {fileID: 114296469139614826}
   - component: {fileID: 198605673352702076}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Clouds_cumulonimbus
   m_TagString: Untagged
   m_Icon: {fileID: 0}
