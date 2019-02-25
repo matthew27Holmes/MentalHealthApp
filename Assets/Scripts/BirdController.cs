@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class BirdController : MonoBehaviour {
 
-    public AudioClip song1;
-    public AudioClip song2;
-    public AudioClip CloudClips;
+    public AudioClip[] CloudClips;
+    public AudioClip[] FlowerClips;
+    public AudioClip[] LillyFlowerClips;
+    public AudioClip[] TreeClips;
 
 
-    public AudioClip flyingSound;
     AudioSource ASource;
     public AudioSource EnviromentSound;
 
@@ -24,16 +24,20 @@ public class BirdController : MonoBehaviour {
     int flyingDirectionXHash;
     int flyingDirectionYHash;
 
-    float dragDistance;  //minimum distance for a swipe to be registered
+    //float dragDistance;  //minimum distance for a swipe to be registered
 
 
     Dictionary<int, Vector2> activeTouches = new Dictionary<int, Vector2>();
-    private bool TapTouch;
 
     CharacterController controller;
     public float baseSpeed = 10.0f;
     public float rotSpeedX = 3.0f;
     public float rotSpeedY = 1.5f;
+    public Vector3 pitch;
+    public Vector3 yaw;
+
+    private Vector3 LastHeading;
+    private float startTime;
 
     public bool UTurn = false;
 
@@ -49,16 +53,14 @@ public class BirdController : MonoBehaviour {
         flyingDirectionXHash = Animator.StringToHash("flyingDirectionX");
         flyingDirectionYHash = Animator.StringToHash("flyingDirectionY");
 
-        dragDistance = Screen.height * 0.001f; //dragDistance is % height of the screen
+       // dragDistance = Screen.height * 0.001f; //dragDistance is % height of the screen
+        LastHeading = new Vector3();
     }
 
     private void FixedUpdate()
     {
         anim.SetBool(flyingBoolHash, true);
-        ASource.PlayOneShot(flyingSound, .1f);
-
         Vector3 inputs = GetPlayerSwipe();
-
 
         if (!UTurn)
         {
@@ -71,32 +73,16 @@ public class BirdController : MonoBehaviour {
         
     }
 
-
-    void PlaySong()
-    {
-        if (Random.value < .5)
-        {
-            ASource.PlayOneShot(song1, 1);
-        }
-        else
-        {
-            ASource.PlayOneShot(song2, 1);
-        }
-    }
-
     void Fly(Vector3 inputs)
     {
         Vector3 moveVector = transform.forward * baseSpeed;
 
-        Vector3 yaw = inputs.x * transform.right * rotSpeedX * Time.deltaTime;
-        anim.SetFloat(flyingDirectionXHash, inputs.x * rotSpeedX);
+        yaw = inputs.x * transform.right * rotSpeedX * Time.deltaTime;
 
-        Vector3 pitch = inputs.y * transform.up * rotSpeedY * Time.deltaTime;
-        anim.SetFloat(flyingDirectionYHash, inputs.y * rotSpeedY);
+        pitch = inputs.y * transform.up * rotSpeedY * Time.deltaTime;
 
         Vector3 direction = yaw + pitch;
        
-
         // stop loops 
         if(StopLoop(moveVector + direction))
         {
@@ -104,6 +90,27 @@ public class BirdController : MonoBehaviour {
             transform.rotation = Quaternion.LookRotation(moveVector);
         }
 
+        //lession the snap back to default postion
+        if (inputs.x <= 0 && inputs.y <= 0)
+        {
+            float speedFudge = 1.0f;
+            float DistanceCovered = (Time.time - startTime) * speedFudge;
+            float JourneyLength = Vector3.Distance(inputs, LastHeading);
+            float fractJourney = DistanceCovered / JourneyLength;
+
+            Vector3 heading = Vector3.Lerp(LastHeading, inputs, fractJourney);
+
+            // Vector3 heading = Vector3.SmoothDamp(LastHeading, inputs,ref velocity, speedFudge,Time.deltaTime);
+            anim.SetFloat(flyingDirectionXHash, heading.x /** rotSpeedX*/);
+            anim.SetFloat(flyingDirectionYHash, heading.y /** rotSpeedY*/);
+        }
+        else
+        {
+            LastHeading = inputs;
+            startTime = Time.time;
+            anim.SetFloat(flyingDirectionXHash, inputs.x /** rotSpeedX*/);//took out rotaion for sensitiveity issue
+            anim.SetFloat(flyingDirectionYHash, inputs.y /** rotSpeedY*/);
+        }
         controller.Move(moveVector * Time.deltaTime);
     }
 
@@ -128,21 +135,19 @@ public class BirdController : MonoBehaviour {
             {
                 float mag = 0;
                 Swipe = (touch.position - activeTouches[touch.fingerId]);
-                if (Mathf.Abs(Swipe.x) > dragDistance || Mathf.Abs(Swipe.y) > dragDistance || Mathf.Abs(Swipe.z) > dragDistance)
-                {
-                    mag = Swipe.magnitude / 300;
-                    Swipe = Swipe.normalized * mag;
-                }
-                else
-                {
+                // if (Mathf.Abs(Swipe.x) > dragDistance || Mathf.Abs(Swipe.y) > dragDistance || Mathf.Abs(Swipe.z) > dragDistance)
+                //{
+                mag = Swipe.magnitude / 300;
+                Swipe = Swipe.normalized * mag;
+                //}
+                //else
+                //{
 
-                    // tap not drag play sound
-                    if (!TapTouch)
-                    {
-                        TapTouch = true;
-                        TapRay(touch.position);
-                    }
-                }
+                //    // tap not drag play sound
+               
+                //        TapRay(touch.position);
+               
+                //}
             }
         }
         return Swipe;
@@ -159,7 +164,6 @@ public class BirdController : MonoBehaviour {
 
             GM.LeaveCloudMessage(cloud);
         }
-        TapTouch = false;
     }
 
     //need to handel loops better
@@ -204,18 +208,59 @@ public class BirdController : MonoBehaviour {
         controller.Move(moveVector * Time.deltaTime);
     }
 
+    void FindObjectSound(string type)
+    {
+        AudioClip clip = null;
+        bool souceFound = false;
+        Debug.Log(type.ToString());
+        switch (type)
+        {
+            case "LillyFlower":
+                clip = LillyFlowerClips[Random.Range(0, LillyFlowerClips.Length)];
+                souceFound = true;
+                break;
+            case "Flower":
+                clip = FlowerClips[Random.Range(0, FlowerClips.Length)];
+                souceFound = true;
+                break;
+            case "Cloud":
+                clip = CloudClips[Random.Range(0, CloudClips.Length)];
+                souceFound = true;
+                break;          
+            case "OldTree":
+                clip = TreeClips[Random.Range(0, TreeClips.Length)];
+                souceFound = true;
+                break;
+            default:
+                break;
+        }
+
+        if (!EnviromentSound.isPlaying && souceFound)
+        {
+            EnviromentSound.PlayOneShot(clip, 1);
+            Debug.Log("playing " + clip.name);
+        }
+
+    }
+
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.layer == LayerMask.NameToLayer("Cloud"))
-        {
-            // AudioClip clip = //CloudClips[Random.Range(0, CloudClips.Length)];
-            if (!EnviromentSound.isPlaying)
-            {
-                Debug.Log("playing " + CloudClips.name);
-                EnviromentSound.PlayOneShot(CloudClips, 1);
-            }
-        }
+        FindObjectSound(LayerMask.LayerToName(other.gameObject.layer));
     }
+
+
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    if(other.gameObject.layer == LayerMask.NameToLayer("Cloud"))
+    //    {
+    //        // AudioClip clip = //CloudClips[Random.Range(0, CloudClips.Length)];
+    //        if (!EnviromentSound.isPlaying)
+    //        {
+    //            Debug.Log("playing " + CloudClips.name);
+    //            EnviromentSound.PlayOneShot(CloudClips, 1);
+    //        }
+    //    }
+    //}
 }
 
 

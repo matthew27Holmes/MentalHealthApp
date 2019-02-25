@@ -74,8 +74,8 @@
     <Compile Include="Assets\Scripts\CloudEnd.cs" />
     <Compile Include="Assets\Scripts\CloudSpawner.cs" />
     <Compile Include="Assets\Scripts\GameManger.cs" />
+    <Compile Include="Assets\Scripts\settingManger.cs" />
     <Compile Include="Assets\Scripts\WaterGroup.cs" />
-    <Compile Include="Assets\settingManger.cs" />
     <None Include="Assets\Enviroment low poly\EasyPolyMap\Documents\StepByStepDemoData.txt" />
     <None Include="Assets\Enviroment low poly\EPMTerrainOutput\LowPolyValley\LowPolyValley_data.txt" />
     <None Include="Assets\Enviroment low poly\LowPolyEnviromentAssets\PlantAssets\Shader\VertexColor.shader" />

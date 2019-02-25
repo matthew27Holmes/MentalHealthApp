@@ -2,21 +2,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraFollowScript : MonoBehaviour {
+public class CameraFollowScript : MonoBehaviour
+{
 
-    public Transform lookAt;
+    public Transform Player;
+    private Vector3 behindPlayer = new Vector3(0, 2, -4);
+    public float angle;
+    public float offset;
 
-    Vector3 DesiredPostion;
+    private Vector3 velocity = new Vector3();
 
-   public float offset= 1.5f;
-   public float distance= 1.0f;
 
-    private void Update()
+    private void FixedUpdate()
     {
-        DesiredPostion = lookAt.position + (-transform.forward * distance)+ (transform.up * offset);
-        transform.position = Vector3.Lerp(transform.position,DesiredPostion,0.05f);
-
-        transform.LookAt(lookAt.position + (Vector3.up * offset));
+        transform.position = Vector3.SmoothDamp(transform.position,
+            Player.transform.TransformPoint(behindPlayer) + Vector3.up,
+            ref velocity, 0.1f);
+       // BirdController birdController = Player.GetComponent<BirdController>();
+       // transform.rotation = Quaternion.Euler(new Vector3(angle, birdController.pitch.y, 0));
+        transform.LookAt(Player.position + (Vector3.up * offset));
     }
 
 
