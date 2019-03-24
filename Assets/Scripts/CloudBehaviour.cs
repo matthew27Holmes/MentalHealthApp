@@ -11,6 +11,10 @@ public class CloudBehaviour : MonoBehaviour {
 
     public Text CloudText;
 
+    bool moveCloud;
+    Vector3 CloudStartPos;
+    Vector3 moveToPostion;
+
     // Use this for initialization
     void Start () {
         
@@ -40,11 +44,34 @@ public class CloudBehaviour : MonoBehaviour {
         Vector3 textPos = Camera.main.WorldToScreenPoint(this.transform.position);//should use anchor  
         CloudText.transform.position = textPos;
 
+        if(moveCloud)
+        {
+            moveCloudToPostion();
+            if(Vector3.Distance(transform.position,moveToPostion) <=0)
+            {
+                moveCloud = false;
+            }
+        }
+
         if (dead)
         {
             DestoryCloud();
         }
 
+
+    }
+
+    void setCloudMove(Vector3 start,Vector3 end)
+    {
+        moveCloud = true;
+        CloudStartPos = start;
+        moveToPostion = end;
+    }
+
+
+    void moveCloudToPostion()
+    {
+        // lerp to move to pos  
     }
     
     private void DestoryCloud()

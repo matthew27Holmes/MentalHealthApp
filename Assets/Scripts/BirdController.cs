@@ -14,6 +14,7 @@ public class BirdController : MonoBehaviour {
     public AudioSource EnviromentSound;
 
     public GameManger GM;
+    public Camera cam;
 
 
     public GameObject birdModel;
@@ -23,9 +24,6 @@ public class BirdController : MonoBehaviour {
     int flyingBoolHash;
     int flyingDirectionXHash;
     int flyingDirectionYHash;
-
-    //float dragDistance;  //minimum distance for a swipe to be registered
-
 
     Dictionary<int, Vector2> activeTouches = new Dictionary<int, Vector2>();
 
@@ -53,7 +51,6 @@ public class BirdController : MonoBehaviour {
         flyingDirectionXHash = Animator.StringToHash("flyingDirectionX");
         flyingDirectionYHash = Animator.StringToHash("flyingDirectionY");
 
-       // dragDistance = Screen.height * 0.001f; //dragDistance is % height of the screen
         LastHeading = new Vector3();
     }
 
@@ -128,6 +125,10 @@ public class BirdController : MonoBehaviour {
             {
                 if (activeTouches.ContainsKey(touch.fingerId))
                 {
+                    if (Vector2.Distance(touch.position, activeTouches[touch.fingerId]) <= 1)
+                    {
+                        TapRay(touch.position);
+                    }
                     activeTouches.Remove(touch.fingerId);
                 }
             }
@@ -135,19 +136,9 @@ public class BirdController : MonoBehaviour {
             {
                 float mag = 0;
                 Swipe = (touch.position - activeTouches[touch.fingerId]);
-                // if (Mathf.Abs(Swipe.x) > dragDistance || Mathf.Abs(Swipe.y) > dragDistance || Mathf.Abs(Swipe.z) > dragDistance)
-                //{
+
                 mag = Swipe.magnitude / 300;
                 Swipe = Swipe.normalized * mag;
-                //}
-                //else
-                //{
-
-                //    // tap not drag play sound
-               
-                //        TapRay(touch.position);
-               
-                //}
             }
         }
         return Swipe;
@@ -156,14 +147,15 @@ public class BirdController : MonoBehaviour {
     void TapRay(Vector3 TapPos)
     {
         RaycastHit hit;
-        Camera cam = transform.GetComponentInChildren<Camera>();
-        if (Physics.Raycast(TapPos, cam.transform.forward, out hit, LayerMask.NameToLayer("Cloud")))
+        Physics.Raycast(TapPos, cam.transform.forward, out hit);
+        Debug.Log(hit.transform.gameObject.name);
+        if (hit.transform.gameObject.layer == LayerMask.NameToLayer("Cloud"))
         {
             Debug.Log("Ray Hit Cloud");
             GameObject cloud = hit.transform.gameObject;
 
             GM.LeaveCloudMessage(cloud);
-        }
+        }      
     }
 
     //need to handel loops better

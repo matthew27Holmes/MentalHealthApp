@@ -48,7 +48,8 @@ public class GameManger : MonoBehaviour {
     public void LeaveCloudMessage(GameObject cloud)
     {
         Time.timeScale = 0;
-        //should move into focus first
+        //move cloud into focous
+        
         CloudBehaviour cloudBehaviour = cloud.GetComponent<CloudBehaviour>();
         string note = InputText();
         cloudBehaviour.CloudText.text = note;
