@@ -36,6 +36,7 @@ public class GameManger : MonoBehaviour {
         {
             Destroy(gameObject);
         }
+
     }
 
   
@@ -45,12 +46,18 @@ public class GameManger : MonoBehaviour {
         SceneManager.LoadScene(sceneToChangeTo);
     }
 
-    public void LeaveCloudMessage(GameObject cloud)
+    public void moveCloudToPostion(GameObject cloud, Vector3 playerPos)
     {
         Time.timeScale = 0;
         //move cloud into focous
-        
+
         CloudBehaviour cloudBehaviour = cloud.GetComponent<CloudBehaviour>();
+        playerPos.z += 10; // need to get offset in realtion to direction
+        cloudBehaviour.setCloudMove(cloud.transform.position, playerPos);
+    }
+
+    public void LeaveCloudMessage(CloudBehaviour cloudBehaviour)
+    { 
         string note = InputText();
         cloudBehaviour.CloudText.text = note;
         cloudBehaviour.CloudText.gameObject.SetActive(true);
@@ -61,7 +68,14 @@ public class GameManger : MonoBehaviour {
     {
         string inputText = "";
         TouchScreenKeyboard keyboard;
-        keyboard = TouchScreenKeyboard.Open(inputText, TouchScreenKeyboardType.Default);
+        // keyboard = TouchScreenKeyboard.Open(inputText, TouchScreenKeyboardType.Default);
+        keyboard = TouchScreenKeyboard.Open("", TouchScreenKeyboardType.Default);
+
+
+        //VirtualKeyBoard vk = new VirtualKeyBoard();
+
+        //vk.ShowTouchKeyboard();
+
         return inputText;
     }
 

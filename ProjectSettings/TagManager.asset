@@ -15,6 +15,7 @@ TagManager:
   - terrianManger
   - cloud
   - CloudTextManger
+  - GameManger
   layers:
   - Default
   - TransparentFX

@@ -33,6 +33,7 @@ public class BirdController : MonoBehaviour {
     public float rotSpeedY = 1.5f;
     public Vector3 pitch;
     public Vector3 yaw;
+    private Vector3 direction;
 
     private Vector3 LastHeading;
     private float startTime;
@@ -78,7 +79,7 @@ public class BirdController : MonoBehaviour {
 
         pitch = inputs.y * transform.up * rotSpeedY * Time.deltaTime;
 
-        Vector3 direction = yaw + pitch;
+        direction = yaw + pitch;
        
         // stop loops 
         if(StopLoop(moveVector + direction))
@@ -127,7 +128,7 @@ public class BirdController : MonoBehaviour {
                 {
                     if (Vector2.Distance(touch.position, activeTouches[touch.fingerId]) <= 1)
                     {
-                        TapRay(touch.position);
+                        TapRay(cam.ScreenToWorldPoint(touch.position));
                     }
                     activeTouches.Remove(touch.fingerId);
                 }
@@ -147,15 +148,21 @@ public class BirdController : MonoBehaviour {
     void TapRay(Vector3 TapPos)
     {
         RaycastHit hit;
-        Physics.Raycast(TapPos, cam.transform.forward, out hit);
-        Debug.Log(hit.transform.gameObject.name);
-        if (hit.transform.gameObject.layer == LayerMask.NameToLayer("Cloud"))
-        {
-            Debug.Log("Ray Hit Cloud");
-            GameObject cloud = hit.transform.gameObject;
+       
+        Debug.DrawRay(TapPos, transform.forward * 100,Color.green,10);
+        Debug.Log("Ray cast");
+        if (Physics.Raycast(TapPos, cam.transform.forward, out hit)) //  Vector3 direction
 
-            GM.LeaveCloudMessage(cloud);
-        }      
+        {
+            Debug.Log(hit.transform.gameObject.name);
+            if (hit.transform.gameObject.layer == LayerMask.NameToLayer("Cloud"))
+            {
+                Debug.Log("Ray Hit Cloud");
+                GameObject cloud = hit.transform.gameObject;
+
+                GM.moveCloudToPostion(cloud, transform.position);
+            }
+        }
     }
 
     //need to handel loops better
@@ -204,11 +211,11 @@ public class BirdController : MonoBehaviour {
     {
         AudioClip clip = null;
         bool souceFound = false;
-        Debug.Log(type.ToString());
+        //Debug.Log(type.ToString());
         switch (type)
         {
             case "LillyFlower":
-                clip = LillyFlowerClips[Random.Range(0, LillyFlowerClips.Length)];
+                clip = LillyFlowerClips[Random.Range(0, LillyFlowerClips.Length)];//dont make this random
                 souceFound = true;
                 break;
             case "Flower":

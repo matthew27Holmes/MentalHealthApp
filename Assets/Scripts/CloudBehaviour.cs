@@ -10,6 +10,7 @@ public class CloudBehaviour : MonoBehaviour {
     bool ParticlesTriggered = false;
 
     public Text CloudText;
+    GameManger GM;
 
     bool moveCloud;
     Vector3 CloudStartPos;
@@ -20,6 +21,8 @@ public class CloudBehaviour : MonoBehaviour {
         
         dead = false;
         ParticlesTriggered = false;
+
+        GM = GameObject.FindGameObjectWithTag("GameManger").GetComponent<GameManger>();
 
         GameObject canvas = GameObject.FindGameObjectWithTag("CloudTextManger");
         CloudText = Instantiate(CloudText.gameObject, this.transform.position,Quaternion.identity).GetComponent<Text>();
@@ -47,9 +50,11 @@ public class CloudBehaviour : MonoBehaviour {
         if(moveCloud)
         {
             moveCloudToPostion();
-            if(Vector3.Distance(transform.position,moveToPostion) <=0)
+            float distanceToEnd = Vector3.Distance(transform.position, moveToPostion);
+            if (distanceToEnd <= 1)
             {
                 moveCloud = false;
+                GM.LeaveCloudMessage(this);
             }
         }
 
@@ -61,7 +66,7 @@ public class CloudBehaviour : MonoBehaviour {
 
     }
 
-    void setCloudMove(Vector3 start,Vector3 end)
+    public void setCloudMove(Vector3 start,Vector3 end)
     {
         moveCloud = true;
         CloudStartPos = start;
@@ -71,7 +76,9 @@ public class CloudBehaviour : MonoBehaviour {
 
     void moveCloudToPostion()
     {
-        // lerp to move to pos  
+        // lerp to move to pos
+        float speed = 0.5f;
+        transform.position = Vector3.MoveTowards(transform.position, moveToPostion, speed );// Time.deltaTime
     }
     
     private void DestoryCloud()
