@@ -13,6 +13,7 @@ public class CloudBehaviour : MonoBehaviour {
     GameManger GM;
 
     bool moveCloud;
+    bool updateText;
     Vector3 CloudStartPos;
     Vector3 moveToPostion;
 
@@ -54,7 +55,14 @@ public class CloudBehaviour : MonoBehaviour {
             if (distanceToEnd <= 1)
             {
                 moveCloud = false;
-                GM.LeaveCloudMessage(this);
+                if (updateText)
+                {
+                    GM.LeaveCloudMessage(this);
+                }
+                else
+                {
+                    GM.setPaused(false);
+                }
             }
         }
 
@@ -62,13 +70,12 @@ public class CloudBehaviour : MonoBehaviour {
         {
             DestoryCloud();
         }
-
-
     }
 
-    public void setCloudMove(Vector3 start,Vector3 end)
+    public void setCloudMove(Vector3 start,Vector3 end,bool isWrttingNote)
     {
         moveCloud = true;
+        updateText = isWrttingNote;
         CloudStartPos = start;
         moveToPostion = end;
     }
@@ -78,9 +85,9 @@ public class CloudBehaviour : MonoBehaviour {
     {
         // lerp to move to pos
         float speed = 0.5f;
-        transform.position = Vector3.MoveTowards(transform.position, moveToPostion, speed );// Time.deltaTime
+        transform.position = Vector3.MoveTowards(transform.position, moveToPostion, speed);// Time.deltaTime
     }
-    
+
     private void DestoryCloud()
     {
         // strat particle effect kill cloud
@@ -89,10 +96,9 @@ public class CloudBehaviour : MonoBehaviour {
 
         if (!ParticlesTriggered)
         {
-           
-                particle.Play();
-                MeshRenderer meshRenderer = GetComponent<MeshRenderer>();
-                meshRenderer.enabled = false;
+            particle.Play();
+            MeshRenderer meshRenderer = GetComponent<MeshRenderer>();
+            meshRenderer.enabled = false;
             ParticlesTriggered = true;
         }
         else
@@ -103,7 +109,6 @@ public class CloudBehaviour : MonoBehaviour {
                 Destroy(this.gameObject);
             }
         }
-      
     }
 
     public void OnTriggerEnter(Collider other)

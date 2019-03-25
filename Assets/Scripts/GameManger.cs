@@ -8,15 +8,17 @@ using UnityEngine.SceneManagement;
 public class GameManger : MonoBehaviour {
 
     private static bool GameManagerExists;
+
    // private static string currentScene;
     public bool paused = false;
-    public GameObject SettingsMenue;
+    public settingManger SettingsMenue;
 
     public string helpLineKey = "HelpLine";
     public string phoneNumber = "";
     private int helpLineGiven;
     public GameObject HelpLineSetUpObject;
     public GameObject HelpLineFailText;
+    private TouchScreenKeyboard keyboard;
 
     private void Start()
     {
@@ -39,7 +41,11 @@ public class GameManger : MonoBehaviour {
 
     }
 
-  
+    public void FixedUpdate()
+    {
+        Pause();
+    }
+
     public void changeScene(string sceneToChangeTo)
     {
        // currentScene = sceneToChangeTo;
@@ -48,40 +54,35 @@ public class GameManger : MonoBehaviour {
 
     public void moveCloudToPostion(GameObject cloud, Vector3 playerPos)
     {
-        Time.timeScale = 0;
-        //move cloud into focous
-
+        paused = true;
+        SettingsMenue.setCanBeOpened(false);
         CloudBehaviour cloudBehaviour = cloud.GetComponent<CloudBehaviour>();
         playerPos.z += 10; // need to get offset in realtion to direction
-        cloudBehaviour.setCloudMove(cloud.transform.position, playerPos);
+        cloudBehaviour.setCloudMove(cloud.transform.position, playerPos,true);
     }
 
     public void LeaveCloudMessage(CloudBehaviour cloudBehaviour)
-    { 
-        string note = InputText();
+    {
+        string note = "";
+        keyboard = TouchScreenKeyboard.Open(note, TouchScreenKeyboardType.Default);
         cloudBehaviour.CloudText.text = note;
         cloudBehaviour.CloudText.gameObject.SetActive(true);
-        Time.timeScale = 1;
+
+        //when player is finshed inputing note
+        if(keyboard.status == TouchScreenKeyboard.Status.Done
+            || keyboard.status == TouchScreenKeyboard.Status.Canceled 
+            || keyboard.status == TouchScreenKeyboard.Status.LostFocus)
+        {
+            //move cloud back to the sky 
+            paused = false;
+            SettingsMenue.setCanBeOpened(false);
+        }
     }
 
-    public string InputText()
-    {
-        string inputText = "";
-        TouchScreenKeyboard keyboard;
-        // keyboard = TouchScreenKeyboard.Open(inputText, TouchScreenKeyboardType.Default);
-        keyboard = TouchScreenKeyboard.Open("", TouchScreenKeyboardType.Default);
-
-
-        //VirtualKeyBoard vk = new VirtualKeyBoard();
-
-        //vk.ShowTouchKeyboard();
-
-        return inputText;
-    }
 
     private void initHelpLineNumber()
     {
-        Time.timeScale = 0;
+        paused = true;
         HelpLineSetUpObject.SetActive(true);
         HelpLineFailText.SetActive(false);
     }
@@ -94,7 +95,7 @@ public class GameManger : MonoBehaviour {
         phoneNumber = inputField.text;
         if (int.TryParse(phoneNumber, out number))
         {
-            Time.timeScale = 1;
+            paused = false;
             PlayerPrefs.SetInt("helpLineGiven",1);
             PlayerPrefs.SetString(helpLineKey, "tel: " + phoneNumber);
             HelpLineSetUpObject.SetActive(false);
@@ -109,19 +110,27 @@ public class GameManger : MonoBehaviour {
 
     public void Pause()
     {
-        if(paused)
+        if (paused)
         {
             Time.timeScale = 1;
-            SettingsMenue.SetActive(false);
-            paused = false;
+           // paused = false;
         }
         else
         {
             Time.timeScale = 0;
-            SettingsMenue.SetActive(true);
-            paused = true;
+           // paused = true;
         }
     }
+
+    public void setPaused(bool P)// need to set settings button to unrepsonive during paused
+    {
+        paused = true;
+    }
+    public bool getPaused()
+    {
+        return paused;
+    }
+
 
     public void Quit()
     {

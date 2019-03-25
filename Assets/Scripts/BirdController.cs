@@ -120,7 +120,10 @@ public class BirdController : MonoBehaviour {
         {
             if (touch.phase == TouchPhase.Began)
             {
-                activeTouches.Add(touch.fingerId, touch.position);
+                if (!activeTouches.ContainsKey(touch.fingerId))
+                {
+                    activeTouches.Add(touch.fingerId, touch.position);
+                }
             }
             else if (touch.phase == TouchPhase.Ended)
             {
@@ -135,11 +138,14 @@ public class BirdController : MonoBehaviour {
             }
             else
             {
-                float mag = 0;
-                Swipe = (touch.position - activeTouches[touch.fingerId]);
+                if (activeTouches.ContainsKey(touch.fingerId))
+                {
+                    float mag = 0;
+                    Swipe = (touch.position - activeTouches[touch.fingerId]);
 
-                mag = Swipe.magnitude / 300;
-                Swipe = Swipe.normalized * mag;
+                    mag = Swipe.magnitude / 300;
+                    Swipe = Swipe.normalized * mag;
+                }
             }
         }
         return Swipe;
