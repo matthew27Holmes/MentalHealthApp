@@ -13,7 +13,7 @@ public class CloudBehaviour : MonoBehaviour {
     GameManger GM;
 
     bool moveCloud;
-    bool updateText;
+    bool movingBack;
     Vector3 CloudStartPos;
     Vector3 moveToPostion;
 
@@ -21,6 +21,8 @@ public class CloudBehaviour : MonoBehaviour {
     void Start () {
         
         dead = false;
+        movingBack = false;
+        moveCloud = false;
         ParticlesTriggered = false;
 
         GM = GameObject.FindGameObjectWithTag("GameManger").GetComponent<GameManger>();
@@ -55,12 +57,13 @@ public class CloudBehaviour : MonoBehaviour {
             if (distanceToEnd <= 1)
             {
                 moveCloud = false;
-                if (updateText)
+                if (!movingBack)
                 {
                     GM.LeaveCloudMessage(this);
                 }
                 else
                 {
+                    movingBack = false;
                     GM.setPaused(false);
                 }
             }
@@ -72,20 +75,32 @@ public class CloudBehaviour : MonoBehaviour {
         }
     }
 
-    public void setCloudMove(Vector3 start,Vector3 end,bool isWrttingNote)
+    public void setCloudMove(Vector3 start,Vector3 end)
     {
         moveCloud = true;
-        updateText = isWrttingNote;
+        movingBack = false;
         CloudStartPos = start;
         moveToPostion = end;
     }
 
+    public void moveCloudBackToStart()
+    {
+        moveCloud = true;
+        movingBack = true;
+        moveToPostion = CloudStartPos;
+    }
 
     void moveCloudToPostion()
     {
         // lerp to move to pos
         float speed = 0.5f;
         transform.position = Vector3.MoveTowards(transform.position, moveToPostion, speed);// Time.deltaTime
+    }
+
+    public void setCloudText(string note)
+    {
+        CloudText.gameObject.SetActive(true);
+        CloudText.text = note;
     }
 
     private void DestoryCloud()
@@ -105,7 +120,7 @@ public class CloudBehaviour : MonoBehaviour {
         {
             if (!particle.IsAlive())
             {
-                Destroy(CloudText);
+                Destroy(CloudText.gameObject);
                 Destroy(this.gameObject);
             }
         }

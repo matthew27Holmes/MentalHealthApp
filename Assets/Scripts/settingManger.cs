@@ -14,7 +14,6 @@ public class settingManger : MonoBehaviour {
 
     public GameManger GM;
     bool CanBeOpened = true;
-    bool open = false;
 
     //https://stackoverflow.com/questions/48906129/make-phone-call-in-unity?noredirect=1&lq=1
     public void CallHelpLine()
@@ -49,15 +48,15 @@ public class settingManger : MonoBehaviour {
             }
             else
             {
-                OpenCloseMenue(true);
                 GM.setPaused(true);
+                OpenCloseMenue(true);
             }
         }
     }
 
     private void OpenCloseMenue(bool ismenueOpen)
     {
-        for(int i =0; i <= transform.childCount;i++)
+        for(int i =0; i <= transform.childCount -1;i++)
         {
             GameObject child = transform.GetChild(i).gameObject;
             child.SetActive(ismenueOpen);

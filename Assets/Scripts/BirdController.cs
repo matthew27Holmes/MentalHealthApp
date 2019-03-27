@@ -10,7 +10,6 @@ public class BirdController : MonoBehaviour {
     public AudioClip[] TreeClips;
 
 
-    AudioSource ASource;
     public AudioSource EnviromentSound;
 
     public GameManger GM;
@@ -44,8 +43,6 @@ public class BirdController : MonoBehaviour {
     private void Start()
     {
         controller = GetComponent<CharacterController>();
-
-        ASource = birdModel.GetComponent<AudioSource>();
 
         anim = birdModel.GetComponent<Animator>();
         flyingBoolHash = Animator.StringToHash("flying");

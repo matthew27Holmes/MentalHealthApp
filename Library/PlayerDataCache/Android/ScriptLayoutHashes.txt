@@ -238,7 +238,7 @@ b4019a6501ed48b765d8ecdaf0520cbd Assembly-CSharp.dll:EasyPolyMap.EPMPolyTerrainC
 64be45ebc393fd93ca908b7198287549 Assembly-CSharp.dll:.CloudBehaviour
 2f9af06a78208a67db480e9bfed4a076 Unity.TextMeshPro.dll:TMPro.TextMeshPro
 9318334b30e9f195f573b2ce00154b95 Unity.TextMeshPro.dll:TMPro.TMP_ColorGradient
-152116ab2c21a6528d96f0967dcaba3a Assembly-CSharp.dll:.GameManger
+da2471d8ffe2ebb9861896d5292e591b Assembly-CSharp.dll:.GameManger
 93307bd34e39d73fd24e00ec39c25a91 Unity.TextMeshPro.dll:TMPro.TMP_SubMesh
 182e416670915c50a548c38c642db0d8 Vuforia.UnityExtensions.dll:Vuforia.AnchorBehaviour
 f35860350df72508419d9f9fcd288594 Vuforia.UnityExtensions.dll:Vuforia.AnchorInputListenerBehaviour

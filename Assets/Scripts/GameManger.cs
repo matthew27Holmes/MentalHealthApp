@@ -19,9 +19,14 @@ public class GameManger : MonoBehaviour {
     public GameObject HelpLineSetUpObject;
     public GameObject HelpLineFailText;
     private TouchScreenKeyboard keyboard;
+    private string note;
+
+    private CloudBehaviour currentClickedCloud;
 
     private void Start()
     {
+        paused = false;
+        note = "";
         helpLineGiven = 0;
         helpLineGiven = PlayerPrefs.GetInt("helpLineGiven");
         if (helpLineGiven == 0)
@@ -41,9 +46,27 @@ public class GameManger : MonoBehaviour {
 
     }
 
-    public void FixedUpdate()
+    public void Update()
     {
         Pause();
+
+        if (currentClickedCloud != null)
+        {
+            if (!keyboard.active)
+            {
+                note = keyboard.text;
+                currentClickedCloud.setCloudText(note);
+                Debug.Log("cloud text set: " + note);
+                currentClickedCloud.moveCloudBackToStart();              
+            }
+
+            if(!paused)
+            {
+                SettingsMenue.setCanBeOpened(true);//this needs to wait till cloud is in postion again
+                note = "";
+                currentClickedCloud = null;
+            }
+        }
     }
 
     public void changeScene(string sceneToChangeTo)
@@ -58,25 +81,13 @@ public class GameManger : MonoBehaviour {
         SettingsMenue.setCanBeOpened(false);
         CloudBehaviour cloudBehaviour = cloud.GetComponent<CloudBehaviour>();
         playerPos.z += 10; // need to get offset in realtion to direction
-        cloudBehaviour.setCloudMove(cloud.transform.position, playerPos,true);
+        cloudBehaviour.setCloudMove(cloud.transform.position, playerPos);
     }
 
     public void LeaveCloudMessage(CloudBehaviour cloudBehaviour)
     {
-        string note = "";
-        keyboard = TouchScreenKeyboard.Open(note, TouchScreenKeyboardType.Default);
-        cloudBehaviour.CloudText.text = note;
-        cloudBehaviour.CloudText.gameObject.SetActive(true);
-
-        //when player is finshed inputing note
-        if(keyboard.status == TouchScreenKeyboard.Status.Done
-            || keyboard.status == TouchScreenKeyboard.Status.Canceled 
-            || keyboard.status == TouchScreenKeyboard.Status.LostFocus)
-        {
-            //move cloud back to the sky 
-            paused = false;
-            SettingsMenue.setCanBeOpened(false);
-        }
+        currentClickedCloud = cloudBehaviour;
+        keyboard = TouchScreenKeyboard.Open("", TouchScreenKeyboardType.Default);
     }
 
 
@@ -112,19 +123,17 @@ public class GameManger : MonoBehaviour {
     {
         if (paused)
         {
-            Time.timeScale = 1;
-           // paused = false;
+            Time.timeScale = 0;
         }
         else
         {
-            Time.timeScale = 0;
-           // paused = true;
+            Time.timeScale = 1;//change slowly for cloud write
         }
     }
 
     public void setPaused(bool P)// need to set settings button to unrepsonive during paused
     {
-        paused = true;
+        paused = P;
     }
     public bool getPaused()
     {
