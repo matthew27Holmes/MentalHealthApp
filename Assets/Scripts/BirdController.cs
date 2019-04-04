@@ -214,6 +214,7 @@ public class BirdController : MonoBehaviour {
     {
         AudioClip clip = null;
         bool souceFound = false;
+        float voulmeScale = 1;
         //Debug.Log(type.ToString());
         switch (type)
         {
@@ -227,6 +228,7 @@ public class BirdController : MonoBehaviour {
                 break;
             case "Cloud":
                 clip = CloudClips[Random.Range(0, CloudClips.Length)];
+                voulmeScale = 3;
                 souceFound = true;
                 break;          
             case "OldTree":
@@ -237,9 +239,9 @@ public class BirdController : MonoBehaviour {
                 break;
         }
 
-        if (!EnviromentSound.isPlaying && souceFound)
+        if (souceFound)//!EnviromentSound.isPlaying && 
         {
-            EnviromentSound.PlayOneShot(clip, 1);
+            EnviromentSound.PlayOneShot(clip, voulmeScale);
             Debug.Log("playing " + clip.name);
         }
 
