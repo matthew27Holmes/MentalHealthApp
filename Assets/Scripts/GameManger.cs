@@ -7,27 +7,29 @@ using UnityEngine.SceneManagement;
 
 public class GameManger : MonoBehaviour {
 
+
     private static bool GameManagerExists;
 
-   // private static string currentScene;
     public bool paused = false;
     public settingManger SettingsMenue;
 
     public string helpLineKey = "HelpLine";
     public string phoneNumber = "";
+
     private int helpLineGiven;
     public GameObject HelpLineSetUpObject;
     public GameObject HelpLineFailText;
+
+    private CloudBehaviour currentClickedCloud;
     private TouchScreenKeyboard keyboard;
     private string note;
 
-    private CloudBehaviour currentClickedCloud;
-
+    #region unity Callbacks
     private void Start()
     {
         paused = false;
         note = "";
-        helpLineGiven = 0;
+        helpLineGiven = 0;//0 = false, 1 = true
         helpLineGiven = PlayerPrefs.GetInt("helpLineGiven");
         if (helpLineGiven == 0)
         {
@@ -68,55 +70,13 @@ public class GameManger : MonoBehaviour {
             }
         }
     }
+    #endregion
 
+    #region game managment
     public void changeScene(string sceneToChangeTo)
     {
-       // currentScene = sceneToChangeTo;
+        // currentScene = sceneToChangeTo;
         SceneManager.LoadScene(sceneToChangeTo);
-    }
-
-    public void moveCloudToPostion(GameObject cloud, Vector3 playerPos)
-    {
-        paused = true;
-        SettingsMenue.setCanBeOpened(false);
-        CloudBehaviour cloudBehaviour = cloud.GetComponent<CloudBehaviour>();
-        playerPos.z += 10; // need to get offset in realtion to direction
-        cloudBehaviour.setCloudMove(cloud.transform.position, playerPos);
-    }
-
-    public void LeaveCloudMessage(CloudBehaviour cloudBehaviour)
-    {
-        currentClickedCloud = cloudBehaviour;
-        keyboard = TouchScreenKeyboard.Open("", TouchScreenKeyboardType.Default);
-    }
-
-
-    private void initHelpLineNumber()
-    {
-        paused = true;
-        HelpLineSetUpObject.SetActive(true);
-        HelpLineFailText.SetActive(false);
-    }
-
-    public void SetHelpLineNumber()
-    {
-        InputField inputField = HelpLineSetUpObject.transform.GetComponentInChildren<InputField>();
-
-        int number = 0;
-        phoneNumber = inputField.text;
-        if (int.TryParse(phoneNumber, out number))
-        {
-            paused = false;
-            PlayerPrefs.SetInt("helpLineGiven",1);
-            PlayerPrefs.SetString(helpLineKey, "tel: " + phoneNumber);
-            HelpLineSetUpObject.SetActive(false);
-        }
-        else
-        {
-            HelpLineFailText.SetActive(true);
-            //breakOutCase
-            //PlayerPrefs.SetInt("helpLineGiven",0);
-        }
     }
 
     public void Pause()
@@ -145,5 +105,51 @@ public class GameManger : MonoBehaviour {
     {
         Application.Quit();
     }
-    
+    #endregion
+
+    #region cloudWritting
+    public void moveCloudToPostion(GameObject cloud, Vector3 playeroffset)
+    {
+        paused = true;
+        SettingsMenue.setCanBeOpened(false);
+        CloudBehaviour cloudBehaviour = cloud.GetComponent<CloudBehaviour>();
+        cloudBehaviour.setCloudMove(cloud.transform.position, playeroffset);
+    }
+
+    public void LeaveCloudMessage(CloudBehaviour cloudBehaviour)
+    {
+        currentClickedCloud = cloudBehaviour;
+        keyboard = TouchScreenKeyboard.Open("", TouchScreenKeyboardType.Default);
+    }
+    #endregion
+
+    #region helpLine
+    private void initHelpLineNumber()
+    {
+        paused = true;
+        HelpLineSetUpObject.SetActive(true);
+        HelpLineFailText.SetActive(false);
+    }
+
+    public void SetHelpLineNumber()
+    {
+        InputField inputField = HelpLineSetUpObject.transform.GetComponentInChildren<InputField>();
+
+        int number = 0;
+        phoneNumber = inputField.text;
+        if (int.TryParse(phoneNumber, out number))
+        {
+            paused = false;
+            PlayerPrefs.SetInt("helpLineGiven",1);
+            PlayerPrefs.SetString(helpLineKey, "tel: " + phoneNumber);
+            HelpLineSetUpObject.SetActive(false);
+        }
+        else
+        {
+            HelpLineFailText.SetActive(true);
+            //breakOutCase
+            //PlayerPrefs.SetInt("helpLineGiven",0);
+        }
+    }
+    #endregion
 }

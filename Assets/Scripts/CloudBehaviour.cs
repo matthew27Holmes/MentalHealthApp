@@ -17,7 +17,7 @@ public class CloudBehaviour : MonoBehaviour {
     Vector3 CloudStartPos;
     Vector3 moveToPostion;
 
-    // Use this for initialization
+    #region Unity callback
     void Start () {
         
         dead = false;
@@ -35,11 +35,6 @@ public class CloudBehaviour : MonoBehaviour {
         CloudText.transform.SetParent(canvas.transform,false);
     }
 
-    public void setSpeed(float nwSpeed)
-    {
-        speed = nwSpeed;
-    }
-	// Update is called once per frame
 	void Update () {
 
        // speed = BeatDetc.tapTempo();
@@ -77,6 +72,21 @@ public class CloudBehaviour : MonoBehaviour {
             DestoryCloud();
         }
     }
+    #endregion
+
+    #region cloud text
+    public void setCloudText(string note)
+    {
+        CloudText.gameObject.SetActive(true);
+        CloudText.text = note;
+    }
+    #endregion
+
+    #region move cloud to postion
+    public void setSpeed(float nwSpeed)
+    {
+        speed = nwSpeed;
+    }
 
     public void setCloudMove(Vector3 start,Vector3 end)
     {
@@ -99,13 +109,9 @@ public class CloudBehaviour : MonoBehaviour {
         float speed = 0.5f;
         transform.position = Vector3.MoveTowards(transform.position, moveToPostion, speed);// Time.deltaTime
     }
+    #endregion
 
-    public void setCloudText(string note)
-    {
-        CloudText.gameObject.SetActive(true);
-        CloudText.text = note;
-    }
-
+    #region cloud destoryed
     private void DestoryCloud()
     {
         // strat particle effect kill cloud
@@ -128,7 +134,7 @@ public class CloudBehaviour : MonoBehaviour {
             }
         }
     }
-
+    #endregion
     public void OnTriggerEnter(Collider other)
     {
         if(other.CompareTag("Player"))
