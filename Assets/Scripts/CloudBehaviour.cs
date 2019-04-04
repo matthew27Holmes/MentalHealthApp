@@ -112,6 +112,7 @@ public class CloudBehaviour : MonoBehaviour {
         if (!ParticlesTriggered)
         {
             particle.Play();
+            Destroy(CloudText.gameObject);
             MeshRenderer meshRenderer = GetComponent<MeshRenderer>();
             meshRenderer.enabled = false;
             ParticlesTriggered = true;
@@ -120,7 +121,6 @@ public class CloudBehaviour : MonoBehaviour {
         {
             if (!particle.IsAlive())
             {
-                Destroy(CloudText.gameObject);
                 Destroy(this.gameObject);
             }
         }
