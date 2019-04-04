@@ -47,24 +47,27 @@ public class CloudBehaviour : MonoBehaviour {
         transform.Translate(Vector3.right * (speed * Time.deltaTime),Space.World);
 
         //UpdateTextPostion
-        Vector3 textPos = Camera.main.WorldToScreenPoint(this.transform.position);//should use anchor  
-        CloudText.transform.position = textPos;
-
-        if(moveCloud)
+        if (CloudText)
         {
-            moveCloudToPostion();
-            float distanceToEnd = Vector3.Distance(transform.position, moveToPostion);
-            if (distanceToEnd <= 1)
+            Vector3 textPos = Camera.main.WorldToScreenPoint(this.transform.position);//should use anchor  
+            CloudText.transform.position = textPos;
+
+            if (moveCloud)
             {
-                moveCloud = false;
-                if (!movingBack)
+                moveCloudToPostion();
+                float distanceToEnd = Vector3.Distance(transform.position, moveToPostion);
+                if (distanceToEnd <= 1)
                 {
-                    GM.LeaveCloudMessage(this);
-                }
-                else
-                {
-                    movingBack = false;
-                    GM.setPaused(false);
+                    moveCloud = false;
+                    if (!movingBack)
+                    {
+                        GM.LeaveCloudMessage(this);
+                    }
+                    else
+                    {
+                        movingBack = false;
+                        GM.setPaused(false);
+                    }
                 }
             }
         }
