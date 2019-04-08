@@ -317,7 +317,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a300cf4ec2d501546af4da7c2a9a88fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CloudText: {fileID: 0}
+  CloudText: {fileID: 114852197669832600, guid: 7a89269204879e346aca8db8651e9c11,
+    type: 2}
 --- !u!114 &114442948017844774
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -329,7 +330,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a300cf4ec2d501546af4da7c2a9a88fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CloudText: {fileID: 0}
+  CloudText: {fileID: 114852197669832600, guid: 7a89269204879e346aca8db8651e9c11,
+    type: 2}
 --- !u!114 &114940352045305622
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -341,4 +343,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a300cf4ec2d501546af4da7c2a9a88fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CloudText: {fileID: 0}
+  CloudText: {fileID: 114852197669832600, guid: 7a89269204879e346aca8db8651e9c11,
+    type: 2}

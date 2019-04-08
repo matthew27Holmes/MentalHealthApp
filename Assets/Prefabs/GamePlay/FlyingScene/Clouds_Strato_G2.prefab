@@ -680,7 +680,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a300cf4ec2d501546af4da7c2a9a88fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CloudText: {fileID: 114852197669832600, guid: 9899590de9690be4ca69c8272d281afd,
+  CloudText: {fileID: 114852197669832600, guid: 7a89269204879e346aca8db8651e9c11,
     type: 2}
 --- !u!114 &114097187970224990
 MonoBehaviour:
@@ -693,7 +693,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a300cf4ec2d501546af4da7c2a9a88fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CloudText: {fileID: 114852197669832600, guid: 9899590de9690be4ca69c8272d281afd,
+  CloudText: {fileID: 114852197669832600, guid: 7a89269204879e346aca8db8651e9c11,
     type: 2}
 --- !u!114 &114157875251490200
 MonoBehaviour:
@@ -706,7 +706,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a300cf4ec2d501546af4da7c2a9a88fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CloudText: {fileID: 114852197669832600, guid: 9899590de9690be4ca69c8272d281afd,
+  CloudText: {fileID: 114852197669832600, guid: 7a89269204879e346aca8db8651e9c11,
     type: 2}
 --- !u!114 &114305487764011022
 MonoBehaviour:
@@ -719,7 +719,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a300cf4ec2d501546af4da7c2a9a88fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CloudText: {fileID: 114852197669832600, guid: 9899590de9690be4ca69c8272d281afd,
+  CloudText: {fileID: 114852197669832600, guid: 7a89269204879e346aca8db8651e9c11,
     type: 2}
 --- !u!114 &114356885979679834
 MonoBehaviour:
@@ -732,7 +732,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a300cf4ec2d501546af4da7c2a9a88fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CloudText: {fileID: 114852197669832600, guid: 9899590de9690be4ca69c8272d281afd,
+  CloudText: {fileID: 114852197669832600, guid: 7a89269204879e346aca8db8651e9c11,
     type: 2}
 --- !u!114 &114600462119970868
 MonoBehaviour:
@@ -745,7 +745,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a300cf4ec2d501546af4da7c2a9a88fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CloudText: {fileID: 114852197669832600, guid: 9899590de9690be4ca69c8272d281afd,
+  CloudText: {fileID: 114852197669832600, guid: 7a89269204879e346aca8db8651e9c11,
     type: 2}
 --- !u!198 &198366324404917934
 ParticleSystem:
