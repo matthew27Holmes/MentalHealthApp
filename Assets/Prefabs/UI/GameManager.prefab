@@ -20,13 +20,49 @@ GameObject:
   m_Component:
   - component: {fileID: 224700392489398268}
   - component: {fileID: 114814165627064746}
+  - component: {fileID: 114686839030104214}
   m_Layer: 5
   m_Name: GameManager
-  m_TagString: Untagged
+  m_TagString: GameManger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &114686839030104214
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1445262857091688}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 221c9ea03d6693546b367b282f31f3b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioSource: {fileID: 0}
+  bufferSize: 1024
+  gThresh: 0.1
+  onBeat:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_MethodName: SpawnCloud
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: AudioProcessor+OnBeatEventHandler, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  onSpectrum:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: AudioProcessor+OnSpectrumEventHandler, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!114 &114814165627064746
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -38,6 +74,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf0998ae7395ad140b7a86d666b0701f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  paused: 0
+  SettingsMenue: {fileID: 0}
+  helpLineKey: HelpLine
+  phoneNumber: 
+  HelpLineSetUpObject: {fileID: 0}
+  HelpLineFailText: {fileID: 0}
 --- !u!224 &224700392489398268
 RectTransform:
   m_ObjectHideFlags: 1

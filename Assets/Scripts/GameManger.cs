@@ -3,7 +3,6 @@ using System.Collections.Generic;
 
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
 public class GameManger : MonoBehaviour {
 
@@ -73,11 +72,6 @@ public class GameManger : MonoBehaviour {
     #endregion
 
     #region game managment
-    public void changeScene(string sceneToChangeTo)
-    {
-        // currentScene = sceneToChangeTo;
-        SceneManager.LoadScene(sceneToChangeTo);
-    }
 
     public void Pause()
     {
