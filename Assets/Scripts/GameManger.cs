@@ -28,8 +28,8 @@ public class GameManger : MonoBehaviour {
     {
         paused = false;
         note = "";
-        helpLineGiven = 0;//0 = false, 1 = true
-        helpLineGiven = PlayerPrefs.GetInt("helpLineGiven");
+        helpLineGiven = 1;//0 = false, 1 = true
+        //helpLineGiven = PlayerPrefs.GetInt("helpLineGiven");
         if (helpLineGiven == 0)
         {
             initHelpLineNumber();
