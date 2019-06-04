@@ -32,7 +32,7 @@ GameObject:
   - component: {fileID: 54124276588908782}
   m_Layer: 0
   m_Name: Cloud_Cumulus_Med (1)
-  m_TagString: Untagged
+  m_TagString: cloud
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -54,7 +54,7 @@ GameObject:
   - component: {fileID: 54689252345488180}
   m_Layer: 0
   m_Name: Cloud_Cumulus
-  m_TagString: Untagged
+  m_TagString: cloud
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -76,7 +76,7 @@ GameObject:
   - component: {fileID: 54213475602490292}
   m_Layer: 0
   m_Name: Cloud_Cumulus (2)
-  m_TagString: Untagged
+  m_TagString: cloud
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -98,7 +98,7 @@ GameObject:
   - component: {fileID: 54943141734193198}
   m_Layer: 0
   m_Name: Cloud_Cumulus_Med
-  m_TagString: Untagged
+  m_TagString: cloud
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -120,7 +120,7 @@ GameObject:
   - component: {fileID: 54375522426979666}
   m_Layer: 0
   m_Name: Cloud_Cumulus (1)
-  m_TagString: Untagged
+  m_TagString: cloud
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

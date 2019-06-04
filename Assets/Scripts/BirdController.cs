@@ -30,17 +30,17 @@ public class BirdController : MonoBehaviour {
     Dictionary<int, Vector2> activeTouches = new Dictionary<int, Vector2>();
 
     CharacterController controller;
-    public float baseSpeed = 10.0f;
+    public float baseSpeed = 7.0f;
     public float rotSpeedX = 3.0f;
     public float rotSpeedY = 1.5f;
     public Vector3 pitch;
     public Vector3 yaw;
     private Vector3 direction;
-
     private Vector3 LastHeading;
     private float startTime;
 
     public bool UTurn = false;
+    public GameObject lookAtObject;
 
     #region unity Callback
     private void Start()
@@ -51,7 +51,6 @@ public class BirdController : MonoBehaviour {
         flyingBoolHash = Animator.StringToHash("flying");
         flyingDirectionXHash = Animator.StringToHash("flyingDirectionX");
         flyingDirectionYHash = Animator.StringToHash("flyingDirectionY");
-
         LastHeading = new Vector3();
     }
 
@@ -162,28 +161,28 @@ public class BirdController : MonoBehaviour {
             Vector3 heading = Vector3.Lerp(LastHeading, inputs, fractJourney);
 
             // Vector3 heading = Vector3.SmoothDamp(LastHeading, inputs,ref velocity, speedFudge,Time.deltaTime);
-            anim.SetFloat(flyingDirectionXHash, heading.x /** rotSpeedX*/);
-            anim.SetFloat(flyingDirectionYHash, heading.y /** rotSpeedY*/);
+            anim.SetFloat(flyingDirectionXHash, heading.x);
+            anim.SetFloat(flyingDirectionYHash, heading.y);
         }
         else
         {
             LastHeading = inputs;
             startTime = Time.time;
-            anim.SetFloat(flyingDirectionXHash, inputs.x /** rotSpeedX*/);//took out rotaion for sensitiveity issue
-            anim.SetFloat(flyingDirectionYHash, inputs.y /** rotSpeedY*/);
+            anim.SetFloat(flyingDirectionXHash, inputs.x);//took out rotaion for sensitiveity issue
+            anim.SetFloat(flyingDirectionYHash, inputs.y);
         }
         controller.Move(moveVector * Time.deltaTime);
+        //moveVector = Vector3.zero;
     }
 
     //need to handel loops better
     bool StopLoop(Vector3 moveVector)
     {
         float maxXRotaion = Quaternion.LookRotation(moveVector).eulerAngles.x;
+        //float minXRotaion = -Quaternion.LookRotation(moveVector).eulerAngles.x;
        // float maxYRotaion = Quaternion.LookRotation(moveVector).eulerAngles.y;
-        //|| (maxYRotaion < 90 && maxYRotaion > 70 || maxYRotaion > 270 && maxYRotaion < 290))
-        if (maxXRotaion < 90 && maxXRotaion > 70 || maxXRotaion > 270 && maxXRotaion < 290)             
+        if (maxXRotaion > 65 && maxXRotaion < 90 || maxXRotaion > 270 && maxXRotaion < 290)             
         {
-           // Debug.Log("flip");
             return false;
         }
         else
@@ -195,26 +194,15 @@ public class BirdController : MonoBehaviour {
 
     void UTurnBehaviour()
     {
-        Vector3 moveVector = transform.forward * (baseSpeed * 2);
 
-        Vector2 Inverse = -transform.position.normalized;//new Vector2(0.5f,0.5f);
+        Vector3 UturnMoveVector = transform.forward * (float)(baseSpeed / 1.5);
 
-        Vector3 yaw = Inverse.x * transform.right * (rotSpeedX * 2) * Time.deltaTime;
-        anim.SetFloat(flyingDirectionXHash, Inverse.x);
+        float speed = 0.06f;
 
-        Vector3 pitch = Inverse.y * transform.up * (rotSpeedY *2) * Time.deltaTime;
-        anim.SetFloat(flyingDirectionYHash, Inverse.y);
+        Vector3 lTargetDir = lookAtObject.transform.position - transform.position;
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(lTargetDir), Time.time * speed);
 
-        Vector3 direction = yaw + pitch;
-        moveVector += direction;
-
-        if (StopLoop(moveVector + direction))
-        {
-            moveVector += direction;
-            transform.rotation = Quaternion.LookRotation(moveVector);
-        }
-
-        controller.Move(moveVector * Time.deltaTime);
+        controller.Move(UturnMoveVector * Time.deltaTime);
     }
     #endregion
 

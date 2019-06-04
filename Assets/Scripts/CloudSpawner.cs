@@ -26,19 +26,8 @@ public class CloudSpawner : MonoBehaviour
                                               Random.Range(-range.z, range.z));
 
             GameObject CloudPatten = Instantiate(Clouds[ranCloudIndex], transform.position + randomRange, Quaternion.identity);
-
-            //for(int i = 0; i < CloudPatten.transform.childCount ; i++)
-            //{
-            //    GameObject Cloud = CloudPatten.transform.GetChild(i).gameObject;
-            //    CloudBehaviour behaviour = Cloud.GetComponent<CloudBehaviour>();
-            //    if(behaviour != null)
-            //    {
-            //        behaviour;
-            //    }
-            //}
-           
-
             CloudPatten.transform.parent = transform;
+            CloudPatten.transform.localScale = new Vector3(1, 1, 1);
 
             timeBtwSpawn = startTimeBtwSpwan;        
         }

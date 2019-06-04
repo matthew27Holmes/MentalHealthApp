@@ -18,9 +18,9 @@ public class BoarderPushBack : MonoBehaviour
         {
             if (KeepWithinSystem)
             {
-                BirdController bird = other.gameObject.GetComponent<BirdController>();
-                bird.UTurn = true;
+                BirdController bird = other.gameObject.GetComponent<BirdController>();              
                 PushBackSound.PlayOneShot(windClip, 1);
+                bird.UTurn = true;
             }
             else
             {

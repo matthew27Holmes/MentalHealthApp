@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class CloudBehaviour : MonoBehaviour {
 
-    float speed = 5.0f;
+    float speed = 3.0f;
     bool dead = false;
     bool ParticlesTriggered = false;
 
@@ -37,8 +37,7 @@ public class CloudBehaviour : MonoBehaviour {
 
 	void Update () {
 
-       // speed = BeatDetc.tapTempo();
-        // Move the object upward in world space 1 unit/second.
+
         transform.Translate(Vector3.right * (speed * Time.deltaTime),Space.World);
 
         //UpdateTextPostion

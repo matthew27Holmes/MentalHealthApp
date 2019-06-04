@@ -32,7 +32,7 @@ GameObject:
   - component: {fileID: 54854346590360446}
   m_Layer: 14
   m_Name: Cloud_Strato (1)
-  m_TagString: Untagged
+  m_TagString: cloud
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -54,7 +54,7 @@ GameObject:
   - component: {fileID: 54880172432160598}
   m_Layer: 14
   m_Name: Cloud_Strato
-  m_TagString: Untagged
+  m_TagString: cloud
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -76,7 +76,7 @@ GameObject:
   - component: {fileID: 54600235202646370}
   m_Layer: 14
   m_Name: Cloud_Strato (3)
-  m_TagString: Untagged
+  m_TagString: cloud
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -98,7 +98,7 @@ GameObject:
   - component: {fileID: 54283772612630506}
   m_Layer: 14
   m_Name: Cloud_Strato (2)
-  m_TagString: Untagged
+  m_TagString: cloud
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
